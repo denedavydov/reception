@@ -34,13 +34,13 @@
 				unset($_SESSION['username']);
 				unset($_SESSION['page']);
 				session_destroy();
-				header('localtion:../index.php');
+				header('location:../index.php');
 				exit();
 			}
 
 			/*не совпадение логина введенного и в БД*/
 			if ($login != $db_login) {
-				header('localtion:../index.php');
+				header('location:../index.php');
 				exit();
 			}
 

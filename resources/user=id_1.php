@@ -33,13 +33,14 @@
 				<form action="" method="POST">
 					<button type="submit" class="btn btn-danger btn-block" name="exit" style="margin-top: 20px;"><span class=""></span> выход</button>
 				</form>
-			</div>
+			</div>	
 
 			<div class="col-xs-12">
 				<ul class="nav nav-tabs">
-				  <li role="presentation" class="active"><a href="#">Наталья Евгеньевна</a></li>
-				  <li role="presentation"><a href="#">1</a></li>
-				  <li role="presentation"><a href="#">2</a></li>
+				  <li role="presentation" class="active"><a href="#"> <?php echo  $_SESSION['name']; ?> </a></li>
+				  <li role="presentation"><a href="#">Написать обращение</a></li>
+				  <li role="presentation"><a href="#">Записаться на прием</a></li>
+				  <li role="presentation"><a href="#">Настройки</a></li>
 				</ul>
 			</div>
 

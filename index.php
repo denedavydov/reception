@@ -62,9 +62,21 @@
 					                }
 			            		}}
 
+			            $query = "SELECT `surname` FROM users WHERE `login` = '$login' and  `password` = '$password'";
+						$result = mysql_query($query);
+						$num_rows = mysql_num_rows($result);
+
+						if ($num_rows != 0) {
+							while ($line = mysql_fetch_array($result, MYSQL_ASSOC)) {
+			            		foreach ($line as $col_value) {
+					                $name = $col_value;
+					                }
+			            		}}
+
 				        session_start();
 				        $_SESSION['username'] = $login;
 				        $_SESSION['page'] = 'user=id_'.$id;
+				        $_SESSION['name'] = $name;
 				        header('location:resources/'.$_SESSION['page'].'.php');
 				        exit();
 					} else echo '<br/><p class="text-danger text-center">не верный логин или пароль!</p>';
