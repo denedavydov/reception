@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+	<?php
+		include('templates/head.php');
+	?>
+</head>
+<body>
+
+	<div class="container">
+		<div class="row">
+		<div class="col-xs-12 col-sm-6 col-sm-offset-3 col-md-8 col-md-offset-2">
+				
+				<?php
+					include('templates/title_name.php');
+				?>
+
+				<ol class="breadcrumb">
+					  <li><a href="index.php">Главная</a></li>
+					  <li class="active">Регистрация пользователя</li>
+				</ol>
+
+				<?php
+            	if (isset($_POST['register'])) {
+               		
+               		$name = htmlspecialchars($_POST['name']); 
+	                $surname = htmlspecialchars($_POST['surname']);
+	                $login = htmlspecialchars($_POST['login']);
+	                $passport = htmlspecialchars($_POST['passport']);
+	                $status = htmlspecialchars($_POST['status']);
+	                $password = htmlspecialchars($_POST['password']);
+
+               		include('templates/config.php');
+
+					$link = mysql_connect($db_path, $db_login, $db_password);
+					mysql_select_db($db_name) or die("Не найдена БД");
+					mysql_query('SET NAMES utf8');
+
+					$query = "SELECT `login` FROM users WHERE `login` = '$login'";
+					$result = mysql_query($query);
+
+					$num_rows = mysql_num_rows($result);
+					if ($num_rows != 0) {
+						while ($line = mysql_fetch_array($result, MYSQL_ASSOC)) {
+				            foreach ($line as $col_value) {
+				                $people = $col_value;
+				                }
+				            }
+				         }
+
+				    if($people==$login){
+				    	echo '<p class="text-danger">По такому адресу электронной почты уже зарегистрирован пользователь!</p>';
+				    }else{
+
+	                $sql = 'INSERT INTO users (name, surname, login, passport, status, password) VALUES ("'.$name.'", "'.$surname.'", "'.$login.'", "'.$passport.'", "'.$status.'", "'.$password.'")';                              
+	    
+	                if(!mysql_query($sql))
+	                {echo '<p class="text-danger">ОШИБКА РЕГИСТРАЦИИ!</p>';} 
+	                else 
+	                {
+
+	                	//отправка письма пользователю при регистрации
+				    
+					    $mail_to = $login;
+
+						$type = 'plain'; //Можно поменять на html; plain означяет: будет присылаться чистый текст.
+						$charset = 'utf-8';
+
+						include('templates/smtp_func.php');
+						
+						$message = 'Вы успешно зарегистрировались в "Электронная Приёмная" ГБОУ средней общеобразовательной школы № 416 Петродворцового района Санкт-Петербурга. Ваш логин для входа: '.$login.', Ваш пароль: '.$password.'. Вход в систему: https://reception.school416spb.ru';
+						$subject = 'Регистрация "Электронная приёмная"';
+						$mail_from = 'support@school416spb.ru';
+						$replyto = '"Электронная приемная"';
+						$headers = "To: \"Пользователь\" <$mail_to>\r\n".
+						              "From: \"$replyto\" <$mail_from>\r\n".
+						              "Reply-To: $replyto\r\n".
+						              "Content-Type: text/$type; charset=\"$charset\"\r\n";
+						$sended = smtpmail($mail_to, $subject, $message, $headers);
+
+	                	session_start();
+	                	$_SESSION['reg'] = TRUE;
+	                	header('location:regresult.php');
+	                	exit();
+	                }
+	            }
+	                
+	                mysql_free_result($result);
+	                mysql_close($link);
+		            }
+		        ?>
+
+				<form action="" method="POST">
+					<label>Фамилия:</label>
+					<div class="input-group">
+						  <span class="input-group-addon" id="basic-addon1"><span class="glyphicon glyphicon-user"></span></span>
+						  <input type="text" name="name" required="" autocomplete="off" class="form-control" placeholder="Ваша фамилия" aria-describedby="basic-addon1">
+					</div><br/>
+					<label>Имя Отчество:</label>
+					<div class="input-group">
+						  <span class="input-group-addon" id="basic-addon1"><span class="glyphicon glyphicon-user"></span></span>
+						  <input type="text" name="surname" required="" autocomplete="off" class="form-control" placeholder="Ваше имя и отчество" aria-describedby="basic-addon1">
+					</div><br/>
+					<label>Адрес электронной почты:</label>
+					<div class="input-group">
+						  <span class="input-group-addon" id="basic-addon1"><span class="glyphicon glyphicon-envelope"></span></span>
+						  <input type="email" name="login" required="" autocomplete="off" class="form-control" placeholder="адрес Вашей электронной почты" aria-describedby="basic-addon1">
+					</div><br/>
+					<label>Серия и номер паспорта:</label>
+					<div class="input-group">
+						  <span class="input-group-addon" id="basic-addon1"><span class="glyphicon glyphicon-book"></span></span>
+						  <input type="text" name="passport" autocomplete="off" minlength="9" maxlength="10" required="" class="form-control" placeholder="серия и номер Вашего паспорта (10 цифр подряд без пробелов)" aria-describedby="basic-addon1">
+					</div><br/>
+					<label>Роль:</label>
+					<div class="input-group">
+						  <span class="input-group-addon" id="basic-addon1"><span class="glyphicon glyphicon-cog"></span></span>
+						  <select class="form-control" name="status" required="">
+						  	<option></option>
+						  	<option>Родитель обучающегося</option>
+						  	<option>Законный представитель обучающегося</option>
+						  </select>
+					</div><br/>
+					<label>Пароль пользователя:</label>
+					<div class="input-group">
+						  <span class="input-group-addon" id="basic-addon1"><span class="glyphicon glyphicon-lock"></span></span>
+						  <input type="password" name="password" required="" minlength="5" maxlength="6" autocomplete="off" class="form-control" placeholder="Ваш пароль для входа" aria-describedby="basic-addon1">
+					</div><br/>
+					<div class="checkbox">
+			          <label>
+			            <input type="checkbox" required="" /> Даю согласие на обработку своих персональных данных <a href="" target="_blank" title="Смотреть"><span class="glyphicon glyphicon-file"></span></a>
+			          </label>
+			        </div>
+			        <div class="checkbox">
+			          <label>
+			            <input type="checkbox" required="" /> Ознакомлен с правилами работы <a href="" target="_blank" title="Смотреть"><span class="glyphicon glyphicon-file"></span></a>
+			          </label>
+			        </div>
+					<button type="submit" class="btn btn-success" name="register"><span class="glyphicon glyphicon-log-in"></span> регистрация в системе</button>
+				</form>
+
+				<hr/>
+				<p class="text-center">Давыдов Д.Э. &copy; 2018<br/>Все права сохранены</p>
+		</div>	
+
+	</div>
+	</div>
+
+</body>
+</html>

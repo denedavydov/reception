@@ -1,0 +1,32 @@
+html{
+    height: 100%;
+}
+
+body{
+	margin: 0;
+    position: relative;
+    min-height: 100%;
+    padding-bottom: 100px;
+}
+
+/*подвал*/
+footer{
+    padding-top: 10px;
+    padding-bottom: 10px;
+    border-top: 1px solid #ccc;
+    text-align: center;
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+}
+
+/*выравнивание текста в таблице*/
+.table>tbody>tr>td, .table>tbody>tr>th, .table>tfoot>tr>td, .table>tfoot>tr>th, .table>thead>tr>td, .table>thead>tr>th{
+    vertical-align: middle;
+}
+
+/*название портала на главной*/
+.name{
+    margin-top: -60px;
+    text-shadow: 2px 2px 5px rgba(0,0,0,0.3);
+}
