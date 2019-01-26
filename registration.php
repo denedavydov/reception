@@ -127,12 +127,12 @@
 					</div><br/>
 					<div class="checkbox">
 			          <label>
-			            <input type="checkbox" required="" /> Даю согласие на обработку своих персональных данных <a href="" target="_blank" title="Смотреть"><span class="glyphicon glyphicon-file"></span></a>
+			            <input type="checkbox" required="" /> <a href="" target="_blank" title="Посмотреть">Даю согласие на обработку своих персональных данных</a>
 			          </label>
 			        </div>
 			        <div class="checkbox">
 			          <label>
-			            <input type="checkbox" required="" /> Ознакомлен с правилами работы <a href="" target="_blank" title="Смотреть"><span class="glyphicon glyphicon-file"></span></a>
+			            <input type="checkbox" required="" /> <a href="" target="_blank" title="Посмотреть">Ознакомлен с правилами работы</a>
 			          </label>
 			        </div>
 					<button type="submit" class="btn btn-success" name="register"><span class="glyphicon glyphicon-log-in"></span> регистрация в системе</button>
