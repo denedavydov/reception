@@ -37,12 +37,9 @@
 			</div>	
 
 			<div class="col-xs-12">
-				<ul class="nav nav-tabs">
-				  <li role="presentation" class="active"><a href="#"> <?php echo  $_SESSION['name']; ?> </a></li>
-				  <li role="presentation"><a href="#">Написать обращение</a></li>
-				  <li role="presentation"><a href="#">Записаться на прием</a></li>
-				  <li role="presentation"><a href="#">Настройки</a></li>
-				</ul>
+				<?php
+					include('../templates/menu.php');
+				?>
 			</div>
 
 			<div class="col-xs-12">
