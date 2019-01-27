@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="ru">
 <head>
+	<base href="/reception/" /><!--абсолютный путь-->
 	<?php
 		include('templates/head.php');
 	?>
@@ -68,7 +69,7 @@
 
 						include('templates/smtp_func.php');
 						
-						$message = 'Вы успешно зарегистрировались в "Электронная Приёмная" ГБОУ средней общеобразовательной школы № 416 Петродворцового района Санкт-Петербурга. Ваш логин для входа: '.$login.', Ваш пароль: '.$password.'. Вход в систему: https://reception.school416spb.ru';
+						$message = $surname.', Вы успешно зарегистрировались в "Электронная Приёмная" ГБОУ средней общеобразовательной школы № 416 Петродворцового района Санкт-Петербурга. Ваш логин для входа: '.$login.', Ваш пароль: '.$password.'. Вход в систему: https://reception.school416spb.ru';
 						$subject = 'Регистрация "Электронная приёмная"';
 						$mail_from = 'support@school416spb.ru';
 						$replyto = '"Электронная приемная"';
@@ -77,6 +78,23 @@
 						              "Reply-To: $replyto\r\n".
 						              "Content-Type: text/$type; charset=\"$charset\"\r\n";
 						$sended = smtpmail($mail_to, $subject, $message, $headers);
+
+						//создание страницы пользователя
+						$query = "SELECT `id` FROM users WHERE `login` = '$login'";
+						$result = mysql_query($query);
+
+							$num_rows = mysql_num_rows($result);
+							if ($num_rows != 0) {
+								while ($line = mysql_fetch_array($result, MYSQL_ASSOC)) {
+						            foreach ($line as $col_value) {
+						                $id = $col_value;
+						                }
+						            }
+						        }
+						            
+						$file='templates/user_template.php';
+						$newfile='resources/user=id_'.$id.'.php';
+						copy($file, $newfile);
 
 	                	session_start();
 	                	$_SESSION['reg'] = TRUE;
