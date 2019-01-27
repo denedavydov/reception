@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="ru">
 <head>
+	<base href="/reception/" /><!--абсолютный путь-->
 	<?php
 		include('templates/head.php');
 	?>
