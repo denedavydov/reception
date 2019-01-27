@@ -10,7 +10,7 @@
 
 	<div class="container">
 		<div class="row">
-		<div class="col-xs-12 col-sm-6 col-sm-offset-3 col-md-8 col-md-offset-2">
+		<div class="col-xs-12 col-sm-8 col-sm-offset-2 col-md-6 col-md-offset-3">
 				
 				<?php
 					include('templates/title_name.php');
@@ -122,7 +122,7 @@
 					<label>Адрес электронной почты:</label>
 					<div class="input-group">
 						  <span class="input-group-addon" id="basic-addon1"><span class="glyphicon glyphicon-envelope"></span></span>
-						  <input type="email" name="login" required="" autocomplete="off" class="form-control" placeholder="адрес Вашей электронной почты" aria-describedby="basic-addon1">
+						  <input type="email" name="login" required="" autocomplete="off" class="form-control" placeholder="используется как логин для входа" aria-describedby="basic-addon1">
 					</div><br/>
 					<label>Серия и номер паспорта:</label>
 					<div class="input-group">
@@ -141,7 +141,7 @@
 					<label>Пароль пользователя:</label>
 					<div class="input-group">
 						  <span class="input-group-addon" id="basic-addon1"><span class="glyphicon glyphicon-lock"></span></span>
-						  <input type="password" name="password" required="" minlength="5" maxlength="6" autocomplete="off" class="form-control" placeholder="Ваш пароль для входа" aria-describedby="basic-addon1">
+						  <input type="password" name="password" required="" minlength="6" maxlength="8" autocomplete="off" class="form-control" placeholder="от 6 до 8 символов" aria-describedby="basic-addon1">
 					</div><br/>
 					<div class="checkbox">
 			          <label>
@@ -156,8 +156,7 @@
 					<button type="submit" class="btn btn-success" name="register"><span class="glyphicon glyphicon-log-in"></span> регистрация в системе</button>
 				</form>
 
-				<hr/>
-				<p class="text-center">Давыдов Д.Э. &copy; 2018<br/>Все права сохранены</p>
+				<?php include('templates/footer.php'); ?>
 		</div>	
 
 	</div>
