@@ -3,9 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- Хост: localhost:3306
--- Время создания: Янв 26 2019 г., 11:52
+-- Время создания: Янв 27 2019 г., 21:41
 -- Версия сервера: 5.7.25-0ubuntu0.18.04.2
--- Версия PHP: 5.6.39-1+ubuntu18.04.1+deb.sury.org+1
+-- Версия PHP: 5.6.40-1+ubuntu18.04.1+deb.sury.org+1
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET time_zone = "+00:00";
@@ -33,7 +33,7 @@ CREATE TABLE `users` (
   `login` varchar(50) NOT NULL,
   `passport` varchar(10) NOT NULL,
   `status` varchar(50) NOT NULL,
-  `password` varchar(6) NOT NULL
+  `password` varchar(8) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
@@ -41,8 +41,8 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`id`, `name`, `surname`, `login`, `passport`, `status`, `password`) VALUES
-(1, 'Давыдов', 'Денис Эдуардович', 'denedavydov@gmail.com', '4605179143', 'Родитель обучающегося', 'abc123'),
-(2, 'Иванов', 'Петр Сергеевич', 'ivanov@uandex.ru', '4512457898', 'Законный представитель обучающегося', 'qwerty');
+(1, 'Давыдов', 'Денис Эдуардович', 'denedavydov@gmail.com', '4605179143', 'Законный представитель обучающегося', 'qwerty12'),
+(2, 'Иванов', 'Петр Сергеевич', 'denedavydov@yandex.ru', '1234543535', 'Родитель обучающегося', '12345678');
 
 --
 -- Индексы сохранённых таблиц

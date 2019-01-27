@@ -82,15 +82,14 @@
 						//создание страницы пользователя
 						$query = "SELECT `id` FROM users WHERE `login` = '$login'";
 						$result = mysql_query($query);
+						$num_rows = mysql_num_rows($result);
 
-							$num_rows = mysql_num_rows($result);
-							if ($num_rows != 0) {
-								while ($line = mysql_fetch_array($result, MYSQL_ASSOC)) {
-						            foreach ($line as $col_value) {
-						                $id = $col_value;
-						                }
-						            }
-						        }
+						if ($num_rows != 0) {
+							while ($line = mysql_fetch_array($result, MYSQL_ASSOC)) {
+			            		foreach ($line as $col_value) {
+					                $id = $col_value;
+					                }
+			            		}}
 						            
 						$file='templates/user_template.php';
 						$newfile='resources/user=id_'.$id.'.php';
