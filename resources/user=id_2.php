@@ -1,14 +1,15 @@
 <?php
-	include('../templates/session_start.php');
+	include('templates/session_start.php');
 ?>
 <?php
-	include('../templates/session_close.php');
+	include('templates/session_close.php');
 ?>
 <!DOCTYPE html>
 <html lang="ru">
 <head>
+	<base href="/reception/" /><!--абсолютный путь-->
 	<?php
-		include('../templates/head_resources.php');
+		include('/templates/head.php');
 	?>
 </head>
 <body>
@@ -17,7 +18,7 @@
 		<div class="row">
 			<div class="col-md-1 col-xs-12 col-sm-6">
 				<p class="text-center">
-					<img src="../img/logo.jpg" alt="логотип" width="100" />
+					<img src="/img/logo.jpg" alt="логотип" width="100" />
 				</p>
 			</div>
 
