@@ -27,7 +27,7 @@
 						  <span class="input-group-addon" id="basic-addon1"><span class="glyphicon glyphicon-lock"></span></span>
 						  <input type="password" name="password" maxlength="8" minlength="6" autocomplete="off" class="form-control" placeholder="Пароль пользователя" aria-describedby="basic-addon1">
 					</div><br/>
-					<button type="submit" class="btn btn-success btn-block" name="enter"><span class="glyphicon glyphicon-log-in"></span> войти в систему</button>
+					<button type="submit" class="btn btn-success btn-block" name="enter"><span class="glyphicon glyphicon-log-in"></span> Войти в систему</button>
 				</form>
 
 				<?php
