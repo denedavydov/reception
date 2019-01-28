@@ -41,8 +41,10 @@
 				<h2 class="text-primary">Документы ШРР</h2>
 			</div>
 
-
-			<?php include('../templates/footer.php'); ?>
+			<!--подвал-->
+			<div class="col-xs-12 text-center">
+				<?php include('../templates/footer.php'); ?>
+			</div>
 
 	
 		</div>
