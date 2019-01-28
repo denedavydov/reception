@@ -27,20 +27,9 @@
 				}
 			}
 
-			//поиск id каталога пользователя
-			$query = "SELECT `id` FROM users WHERE `login` = '$login'";
-			$result = mysql_query($query);
-			$num_rows = mysql_num_rows($result);
-
-			if ($num_rows != 0) {
-				while ($line = mysql_fetch_array($result, MYSQL_ASSOC)) {
-            		foreach ($line as $col_value) {
-		                $id = $col_value;
-		                }
-            		}}
 
 			/*определить страницу в строке*/
-			$page_name = $id.'/'.basename($_SERVER['PHP_SELF'], ".php");
+			$page_name = $_SESSION['id'].'/'.basename($_SERVER['PHP_SELF'], ".php");
 
 			if ($page != $page_name) {
 				unset($_SESSION['username']);

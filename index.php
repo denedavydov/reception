@@ -78,6 +78,7 @@
 				        $_SESSION['username'] = $login;
 				        $_SESSION['page'] = $id.'/'.'user=id_'.$id;
 				        $_SESSION['name'] = $name;
+				        $_SESSION['id'] = $id;
 				        header('location:resources/'.$_SESSION['page'].'.php');
 				        exit();
 					} else echo '<br/><p class="text-danger text-center">не верный логин или пароль!</p>';
