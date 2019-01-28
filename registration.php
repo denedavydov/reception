@@ -93,6 +93,11 @@
 						            
 						$file='templates/user_template.php';
 						$newfile='resources/user=id_'.$id.'.php';
+						//права на файлы
+						//chmod($file, 755);
+						//chmod($newfile, 755);
+
+						//создание страницы пользователя
 						copy($file, $newfile);
 
 	                	session_start();
@@ -144,12 +149,12 @@
 					</div><br/>
 					<div class="checkbox">
 			          <label>
-			            <input type="checkbox" required="" /> <a href="" target="_blank" title="Посмотреть">Даю согласие на обработку своих персональных данных</a>
+			            <input type="checkbox" required="" /> <a href="http://www.consultant.ru/document/cons_doc_LAW_61801/" target="_blank" title="Смотреть">Даю согласие на обработку своих персональных данных</a>
 			          </label>
 			        </div>
 			        <div class="checkbox">
 			          <label>
-			            <input type="checkbox" required="" /> <a href="" target="_blank" title="Посмотреть">Ознакомлен с правилами работы</a>
+			            <input type="checkbox" required="" /> <a href="docs/Правила.doc" title="Скачать">Ознакомлен с правилами работы</a>
 			          </label>
 			        </div>
 					<button type="submit" class="btn btn-success" name="register"><span class="glyphicon glyphicon-log-in"></span> регистрация в системе</button>
