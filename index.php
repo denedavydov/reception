@@ -76,7 +76,7 @@
 
 				        session_start();
 				        $_SESSION['username'] = $login;
-				        $_SESSION['page'] = 'user=id_'.$id;
+				        $_SESSION['page'] = $id.'/'.'user=id_'.$id;
 				        $_SESSION['name'] = $name;
 				        header('location:resources/'.$_SESSION['page'].'.php');
 				        exit();
@@ -85,6 +85,7 @@
 
 				    mysql_free_result($result);
 				    mysql_close($link);
+
 				}
 				?>
 

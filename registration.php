@@ -90,12 +90,13 @@
 					                $id = $col_value;
 					                }
 			            		}}
-						            
+
+			            //создание каталога пользователя
+			            mkdir('resources/'.$id,0755);		
+						
+						//файлы для копирования            
 						$file='templates/user_template.php';
-						$newfile='resources/user=id_'.$id.'.php';
-						//права на файлы
-						//chmod($file, 755);
-						//chmod($newfile, 755);
+						$newfile='resources/'.$id.'/user=id_'.$id.'.php';
 
 						//создание страницы пользователя
 						copy($file, $newfile);
