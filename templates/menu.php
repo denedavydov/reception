@@ -2,7 +2,7 @@
   <hr class="hidden-sm hidden-md hidden-lg"/>
 	<li role="presentation" class="active"><a href="<?php echo 'resources/'.$_SESSION['page'].'.php' ?>" style="cursor: pointer;"><span class="glyphicon glyphicon-home"></span> <?php echo  $_SESSION['name']; ?> </a></li>
 	<li role="presentation" class="dropdown">
-    <a class="dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">
+    <a class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
       <span class="glyphicon glyphicon-th-list"></span> Услуги <span class="caret"></span>
     </a>
     <ul class="dropdown-menu">
