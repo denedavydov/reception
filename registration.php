@@ -101,6 +101,13 @@
 						//создание страницы пользователя
 						copy($file, $newfile);
 
+						/*//файлы для копирования
+						$file='templates/appeals_template.php';
+						$newfile='resources/'.$id.'/user=id_'.$id.'#appeals-'.$id.'.php';
+
+						//создание обращений на странице пользователя
+						copy($file, $newfile);*/
+
 	                	session_start();
 	                	$_SESSION['reg'] = TRUE;
 	                	header('location:regresult.php');
