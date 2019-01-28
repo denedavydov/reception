@@ -1,4 +1,5 @@
 <ul class="nav nav-tabs">
+  <hr class="hidden-sm hidden-md hidden-lg"/>
 	<li role="presentation" class="active"><a href="<?php echo 'resources/'.$_SESSION['page'].'.php' ?>" style="cursor: pointer;"><span class="glyphicon glyphicon-home"></span> <?php echo  $_SESSION['name']; ?> </a></li>
 	<li role="presentation" class="dropdown">
     <a class="dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">
