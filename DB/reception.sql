@@ -3,9 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- Хост: localhost:3306
--- Время создания: Янв 27 2019 г., 21:41
+-- Время создания: Янв 28 2019 г., 10:02
 -- Версия сервера: 5.7.25-0ubuntu0.18.04.2
--- Версия PHP: 5.6.40-1+ubuntu18.04.1+deb.sury.org+1
+-- Версия PHP: 5.6.39-1+ubuntu18.04.1+deb.sury.org+1
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET time_zone = "+00:00";
@@ -41,8 +41,9 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`id`, `name`, `surname`, `login`, `passport`, `status`, `password`) VALUES
-(1, 'Давыдов', 'Денис Эдуардович', 'denedavydov@gmail.com', '4605179143', 'Законный представитель обучающегося', 'qwerty12'),
-(2, 'Иванов', 'Петр Сергеевич', 'denedavydov@yandex.ru', '1234543535', 'Родитель обучающегося', '12345678');
+(1, 'Давыдов', 'Денис', 'denedavydov@gmail.com', '1234545454', 'Родитель обучающегося', '12345678'),
+(2, 'Иванов', 'Петр', 'denedavydov@yandex.ru', '7878787878', 'Родитель обучающегося', 'qwerty'),
+(3, 'Петров', 'Сергей Иванович', 'davydov@school416spb.ru', '4545454545', 'Законный представитель обучающегося', '123456');
 
 --
 -- Индексы сохранённых таблиц
@@ -62,7 +63,7 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT для таблицы `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
