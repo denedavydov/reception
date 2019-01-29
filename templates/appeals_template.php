@@ -28,30 +28,39 @@
 					include('../../templates/menu.php');
 				?>
 			</div>
+			<div class="container">
+				<div class="row">
+					<div class="col-xs-12 col-sm-10 col-sm-offset-1 col-md-4">
 
-			<form action="" method="POST">
-				<label>Тема обращения: </label>
-				<div class="input-group">
-					  <span class="input-group-addon" id="basic-addon1"><span class="glyphicon glyphicon-cog"></span></span>
-					  <select class="form-control" name="theme" required="">
-					  	<option></option>
-					  	<option>Пункт_1</option>
-					  	<option>Пункт_2</option>
-					  	<option>Пункт_3</option>
-					  	<option>Пункт_4</option>
-					  </select>
-				</div><br/>
-				<label>Текст обращения: </label>
-				<div class="input-group">
-					  <span class="input-group-addon" id="basic-addon1"><span class="glyphicon glyphicon-pencil"></span></span>
-					  <textarea name="mail" required="" autocomplete="off" class="form-control" placeholder="Ваше обращение" aria-describedby="basic-addon1"></textarea>
-				</div><br/>
-				<button type="submit" class="btn btn-success" name="enter"><span class="glyphicon glyphicon-comment"></span> Отправить </button>
-			</form>
+						<!--Форма обращения-->
+						<form action="" method="POST">
+							<label>Тема обращения: </label>
+							<div class="input-group">
+								  <span class="input-group-addon" id="basic-addon1"><span class="glyphicon glyphicon-pencil"></span></span>
+								  <select class="form-control" name="theme" required="">
+								  	<option></option>
+								  	<option>Пункт_1</option>
+								  	<option>Пункт_2</option>
+								  	<option>Пункт_3</option>
+								  	<option>Пункт_4</option>
+								  </select>
+							</div><br/>
+							<label>Текст обращения: </label>
+							<div class="input-group">
+								  <span class="input-group-addon" id="basic-addon1"><span class="glyphicon glyphicon-comment"></span></span>
+								  <textarea name="mail" required="" autocomplete="off" class="form-control" placeholder="Ваше обращение" aria-describedby="basic-addon1"></textarea>
+							</div><br/>
+							<button type="submit" class="btn btn-success" name="enter"><span class="glyphicon glyphicon-log-in"></span> Отправить </button>
+						</form>
 
-			<!--подвал-->
-			<div class="col-xs-12 text-center">
-				<?php include('../../templates/footer.php'); ?>
+					</div>
+
+						<!--подвал-->
+						<div class="col-xs-12 text-center">
+							<?php include('../../templates/footer.php'); ?>
+						</div>
+
+				</div>
 			</div>
 
 	
