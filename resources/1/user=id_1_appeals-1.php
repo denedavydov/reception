@@ -30,7 +30,7 @@
 			</div>
 			<div class="container">
 				<div class="row">
-					<div class="col-xs-12 col-sm-10 col-sm-offset-1 col-md-4">
+					<div class="col-xs-12 col-sm-10 col-sm-offset-1 col-md-6 col-md-offset-0" style="margin-top: 15px;">
 
 						<!--Форма обращения-->
 						<form action="" method="POST">
@@ -53,6 +53,14 @@
 							<button type="submit" class="btn btn-success" name="enter"><span class="glyphicon glyphicon-log-in"></span> Отправить </button>
 						</form>
 
+					</div>
+
+					<div class="container">
+						<div class="row">
+							<div class="col-xs-12 col-sm-10 col-sm-offset-1 col-md-6 col-md-offset-0">
+								<h1 style="font-size: 20px;">Ваши предыдущие обращения: </h1>
+							</div>
+						</div>
 					</div>
 
 						<!--подвал-->
