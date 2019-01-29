@@ -43,10 +43,10 @@
 				</div><br/>
 				<label>Текст обращения: </label>
 				<div class="input-group">
-					  <span class="input-group-addon" id="basic-addon1"><span class="glyphicon glyphicon-user"></span></span>
+					  <span class="input-group-addon" id="basic-addon1"><span class="glyphicon glyphicon-pencil"></span></span>
 					  <textarea name="mail" required="" autocomplete="off" class="form-control" placeholder="Ваше обращение" aria-describedby="basic-addon1"></textarea>
 				</div><br/>
-				<button type="submit" class="btn btn-success" name="enter"><span class="glyphicon glyphicon-log-in"></span> Отправить </button>
+				<button type="submit" class="btn btn-success" name="enter"><span class="glyphicon glyphicon-comment"></span> Отправить </button>
 			</form>
 
 			<!--подвал-->
