@@ -15,7 +15,7 @@
 <body>
 
 	<div class="container">
-		<div class="row">
+		<div class="row"> 
 			
 			<!--шапка страницы-->
 			<?php
@@ -28,6 +28,31 @@
 					include('../../templates/menu.php');
 				?>
 			</div>
+
+			<?php
+				if(isset($_POST['enter'])) {
+					
+	                	//отправка письма пользователю при регистрации
+				    
+					    $mail_to = "barash2229@gmail.com"; // Почта получателя
+
+						$type = 'plain'; //Можно поменять на html; plain означяет: будет присылаться чистый текст.
+						$charset = 'utf-8';
+
+						include('../../templates/smtp_func.php');
+						
+						$message = $_POST['mail'];
+						$subject = $_POST['theme'];
+						$mail_from = $_SESSION['username'];
+						$replyto = '"Электронная приемная"';
+						$headers = "To: \"Пользователь\" <$mail_to>\r\n".
+						              "From: \"$replyto\" <$mail_from>\r\n".
+						              "Reply-To: $replyto\r\n".
+						              "Content-Type: text/$type; charset=\"$charset\"\r\n";
+						$sended = smtpmail($mail_to, $subject, $message, $headers);
+					}
+			?>
+
 			<div class="container">
 				<div class="row">
 					<div class="col-xs-12 col-sm-10 col-sm-offset-1 col-md-6 col-md-offset-0" style="margin-top: 15px;">
