@@ -15,7 +15,7 @@
 <body>
 
 	<div class="container">
-		<div class="row">
+		<div class="row"> 
 			
 			<!--шапка страницы-->
 			<?php
@@ -23,7 +23,7 @@
 			?>	
 
 			<!--вывод меню-->
-			<div class="col-xs-12"> 
+			<div class="col-xs-12">
 				<?php
 					include('../../templates/menu.php');
 				?>
@@ -62,13 +62,7 @@
 							<label>Тема обращения: </label>
 							<div class="input-group">
 								  <span class="input-group-addon" id="basic-addon1"><span class="glyphicon glyphicon-pencil"></span></span>
-								  <select class="form-control" name="theme" required="">
-								  	<option></option>
-								  	<option>Пункт_1</option>
-								  	<option>Пункт_2</option>
-								  	<option>Пункт_3</option>
-								  	<option>Пункт_4</option>
-								  </select>
+								  <input type="text" name="theme" required="" autocomplete="off" class="form-control" placeholder="Тема обращения" aria-describedby="basic-addon1">
 							</div><br/>
 							<label>Текст обращения: </label>
 							<div class="input-group">
