@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Хост: localhost:3306
--- Время создания: Янв 28 2019 г., 15:44
+-- Время создания: Янв 31 2019 г., 20:14
 -- Версия сервера: 5.7.24-0ubuntu0.18.04.1
 -- Версия PHP: 5.6.39-1+ubuntu18.04.1+deb.sury.org+1
 
@@ -17,7 +17,7 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- База данных: `BD`
+-- База данных: `reception`
 --
 
 -- --------------------------------------------------------
@@ -30,6 +30,7 @@ CREATE TABLE `appeals` (
   `id` int(11) NOT NULL,
   `user_id` int(11) NOT NULL,
   `mail` varchar(100) NOT NULL,
+  `message` text NOT NULL,
   `status` varchar(50) NOT NULL,
   `date` date NOT NULL,
   `time` time(6) NOT NULL
