@@ -31,25 +31,46 @@
 
 			<?php
 				if(isset($_POST['enter'])) {
-					
-	                	//отправка письма пользователю при регистрации
-				    
-					    $mail_to = "barash2229@gmail.com"; // Почта получателя
 
-						$type = 'plain'; //Можно поменять на html; plain означяет: будет присылаться чистый текст.
-						$charset = 'utf-8';
+						$user_id = $_SESSION['id'];
+						$mail = $_SESSION['username'];
+						$theme = htmlspecialchars($_POST['theme']);
+						$message = htmlspecialchars($_POST['message']);
+						$status = "Отправлено";
 
-						include('../../templates/smtp_func.php');
-						
-						$message = $_POST['mail'];
-						$subject = $_POST['theme'];
-						$mail_from = $_SESSION['username'];
-						$replyto = '"Электронная приемная"';
-						$headers = "To: \"Пользователь\" <$mail_to>\r\n".
-						              "From: \"$replyto\" <$mail_from>\r\n".
-						              "Reply-To: $replyto\r\n".
-						              "Content-Type: text/$type; charset=\"$charset\"\r\n";
-						$sended = smtpmail($mail_to, $subject, $message, $headers);
+						// Отправка данных в БД
+
+						include('../../templates/config.php');
+
+						$link = mysql_connect($db_path, $db_login, $db_password);
+						mysql_select_db($db_name) or die("Не найдена БД");
+						mysql_query('SET NAMES utf8');
+
+						$sql = 'INSERT INTO appeals (user_id, mail, theme, message, status) VALUES ("'.$user_id.'", "'.$mail.'", "'.$theme.'", "'.$message.'", "'.$status.'")';                              
+	    
+		                if(!mysql_query($sql))
+		                {echo '<p class="text-danger">ОШИБКА ОТПРАВКИ ОБРАЩЕНИЯ!</p>';} 
+		                else 
+		                	{
+			                	//отправка письма
+						    
+							    $mail_to = "barash2229@gmail.com"; // Почта получателя
+
+								$type = 'plain'; //Можно поменять на html; plain означяет: будет присылаться чистый текст.
+								$charset = 'utf-8';
+
+								include('../../templates/smtp_func.php');
+								
+								$message = $_SESSION['username'].'   '.$_POST['message'];
+								$subject = $_POST['theme'];
+								$mail_from = $_SESSION['username'];
+								$replyto = '"Электронная приемная"';
+								$headers = "To: \"Пользователь\" <$mail_to>\r\n".
+								              "From: \"$replyto\" <$mail_from>\r\n".
+								              "Reply-To: $replyto\r\n".
+								              "Content-Type: text/$type; charset=\"$charset\"\r\n";
+								$sended = smtpmail($mail_to, $subject, $message, $headers);
+							}
 					}
 			?>
 
@@ -62,12 +83,12 @@
 							<label>Тема обращения: </label>
 							<div class="input-group">
 								  <span class="input-group-addon" id="basic-addon1"><span class="glyphicon glyphicon-pencil"></span></span>
-								  <input type="text" name="theme" required="" autocomplete="off" class="form-control" placeholder="Тема обращения" aria-describedby="basic-addon1">
+								  <input type="text" name="theme" required="" maxlength="200" autocomplete="off" class="form-control" placeholder="Тема обращения" aria-describedby="basic-addon1">
 							</div><br/>
 							<label>Текст обращения: </label>
 							<div class="input-group">
 								  <span class="input-group-addon" id="basic-addon1"><span class="glyphicon glyphicon-comment"></span></span>
-								  <textarea name="mail" required="" autocomplete="off" class="form-control" placeholder="Ваше обращение" aria-describedby="basic-addon1"></textarea>
+								  <textarea name="message" required="" autocomplete="off" class="form-control" placeholder="Ваше обращение" aria-describedby="basic-addon1"></textarea>
 							</div><br/>
 							<button type="submit" class="btn btn-success" name="enter"><span class="glyphicon glyphicon-log-in"></span> Отправить </button>
 						</form>
