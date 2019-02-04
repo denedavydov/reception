@@ -101,7 +101,7 @@
 
 
 							<div class="col-xs-12">
-								<a onclick="$('#appeals').slideToggle('slow');" style="cursor: pointer;">
+								<a onclick="$('#appeals').slideToggle('slow');" style="cursor: pointer; text-decoration: none;">
 									<h3 class="text-primary">Ваши предыдущие обращения <span class="
 glyphicon glyphicon-chevron-down"></span></h3>
 								</a>
