@@ -37,6 +37,9 @@
 						$theme = htmlspecialchars($_POST['theme']);
 						$message = htmlspecialchars($_POST['message']);
 						$status = "Отправлено";
+						$date=date("d.m.Y");
+						$time=date("h:i");
+
 
 						// Отправка данных в БД
 
@@ -46,7 +49,7 @@
 						mysql_select_db($db_name) or die("Не найдена БД");
 						mysql_query('SET NAMES utf8');
 
-						$sql = 'INSERT INTO appeals (user_id, mail, theme, message, status) VALUES ("'.$user_id.'", "'.$mail.'", "'.$theme.'", "'.$message.'", "'.$status.'")';                              
+						$sql = 'INSERT INTO appeals (user_id, mail, theme, message, status, date, time) VALUES ("'.$user_id.'", "'.$mail.'", "'.$theme.'", "'.$message.'", "'.$status.'", "'.$date.'", "'.$time.'")';                              
 	    
 		                if(!mysql_query($sql))
 		                {echo '<p class="text-danger">ОШИБКА ОТПРАВКИ ОБРАЩЕНИЯ!</p>';} 
@@ -71,12 +74,13 @@
 								              "Content-Type: text/$type; charset=\"$charset\"\r\n";
 								$sended = smtpmail($mail_to, $subject, $message, $headers);
 							}
+
+							mysql_free_result($result);
+				    		mysql_close($link);
 					}
 			?>
 
-			<div class="container">
-				<div class="row">
-					<div class="col-xs-12 col-sm-10 col-sm-offset-1 col-md-6 col-md-offset-0" style="margin-top: 15px;">
+					<div class="col-xs-12 col-sm-12 col-md-6" style="margin-top: 15px;">
 
 						<!--Форма обращения-->
 						<form action="" method="POST">
@@ -88,20 +92,65 @@
 							<label>Текст обращения: </label>
 							<div class="input-group">
 								  <span class="input-group-addon" id="basic-addon1"><span class="glyphicon glyphicon-comment"></span></span>
-								  <textarea name="message" required="" autocomplete="off" class="form-control" placeholder="Ваше обращение" aria-describedby="basic-addon1"></textarea>
+								  <textarea name="message" required="" rows="10" autocomplete="off" class="form-control textarea" placeholder="Ваше обращение" aria-describedby="basic-addon1"></textarea>
 							</div><br/>
 							<button type="submit" class="btn btn-success" name="enter"><span class="glyphicon glyphicon-log-in"></span> Отправить </button>
 						</form>
 
 					</div>
 
-					<div class="container">
-						<div class="row">
-							<div class="col-xs-12 col-sm-10 col-sm-offset-1 col-md-6 col-md-offset-0">
-								<h1 style="font-size: 20px;">Ваши предыдущие обращения: </h1>
+
+							<div class="col-xs-12">
+								<a onclick="$('#appeals').slideToggle('slow');" style="cursor: pointer;">
+									<h3 class="text-primary">Ваши предыдущие обращения <span class="
+glyphicon glyphicon-chevron-down"></span></h3>
+								</a>
+								<p class="text-success"><span class="
+glyphicon glyphicon-info-sign"></span> Обработанные обращения</p>
+								<div  id="appeals" style="display: none;">
+									<div class="table-responsive">
+										<table class="table table-hover table-bordered text-center">
+											<tr class="info">
+												<td><strong>Дата</strong></td>
+												<td><strong>Время</strong></td>
+												<td><strong>Тема</strong></td>
+												<td><strong>Текст</strong></td>
+											</tr>
+
+											<?php
+
+									            include('../../templates/config.php');
+
+							                   $link = mysql_connect($db_path, $db_login, $db_password);
+												mysql_select_db($db_name) or die("Не найдена БД");
+												mysql_query('SET NAMES utf8');
+
+
+												/**WHERE `status`=""*/
+							                    $query = 'SELECT `date` , `time`, `theme`, `message` FROM appeals order by `id` desc';
+							                    $result = mysql_query($query);
+
+						                        $count=0;
+
+							                    while ($line = mysql_fetch_array($result, MYSQL_ASSOC)) {
+							                    echo "\t<tr>\n";
+							                            foreach ($line as $col_value) {
+							                                echo "\t\t<td>$col_value</td>\n";
+							                            }
+						                                $count++;
+							                        echo "\t</tr>\n";
+							                    }
+
+							                    mysql_free_result($result);
+							                    mysql_close($link);
+						           			?>
+
+										</table>
+									</div>
+								</div>
 							</div>
-						</div>
-					</div>
+
+
 
 						<!--подвал-->
 						<div class="col-xs-12 text-center">

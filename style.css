@@ -20,9 +20,8 @@ footer{
     width: 100%;
 }
 
-textarea {
-    height: 150px !important; 
-    resize: none; 
+.textarea{
+    resize: none;
 } 
 
 /*выравнивание текста в таблице*/
