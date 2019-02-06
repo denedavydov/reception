@@ -74,12 +74,18 @@
 					                }
 			            		}}
 
-				        session_start();
-				        $_SESSION['username'] = $login;
-				        $_SESSION['page'] = $id.'/'.'user=id_'.$id;
-				        $_SESSION['name'] = $name;
-				        $_SESSION['id'] = $id;
-				        header('location:resources/'.$_SESSION['page'].'.php');
+			            session_start();
+	            		if ($_POST['login']=='admin@gmail.com') {
+							$_SESSION['username'] = 'admin';
+					        $_SESSION['page'] = 'admin/user=admin';
+					        header('location:resources/'.$_SESSION['page'].'.php');
+						} else{
+					        $_SESSION['username'] = $login;
+					        $_SESSION['page'] = $id.'/'.'user=id_'.$id;
+					        $_SESSION['name'] = $name;
+					        $_SESSION['id'] = $id;
+					        header('location:resources/'.$_SESSION['page'].'.php');
+				        	}
 				        exit();
 					} else echo '<br/><p class="text-danger text-center">не верный логин или пароль!</p>';
 					
