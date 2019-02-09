@@ -57,6 +57,7 @@
 							<tr class="info">
 								<td><strong>Дата</strong></td>
 								<td><strong>Время</strong></td>
+								<td><strong>От кого</strong></td>
 								<td><strong>Тема</strong></td>
 								<td><strong>Текст</strong></td>
 								<td><strong>Статус</strong></td>
@@ -71,7 +72,7 @@
 								mysql_query('SET NAMES utf8');
 
 
-						        $query = 'SELECT `date` , `time`, `theme`, `message` FROM appeals WHERE `status`="Отпралено" or `status`="Отправлено" order by `id` desc';
+						        $query = 'SELECT `date` , `time` , `mail`, `theme`, `message` FROM appeals WHERE `status`="Отпралено" or `status`="Отправлено" order by `id` desc';
 						        $result = mysql_query($query);
 
 						        $count=0;
