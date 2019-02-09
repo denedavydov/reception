@@ -127,7 +127,8 @@ glyphicon glyphicon-info-sign"></span> Обработанные обращени
 												mysql_query('SET NAMES utf8');
 
 
-							                    $query = 'SELECT `date` , `time`, `theme`, `message` FROM appeals WHERE `status`="Получен ответ" order by `id` desc';
+							                    $id = $_SESSION['id'];
+							                    $query = 'SELECT `date` , `time`, `theme`, `message` FROM appeals WHERE `status`="Получен ответ" and `user_id`="$id" order by `id` desc';
 							                    $result = mysql_query($query);
 
 						                        $count=0;

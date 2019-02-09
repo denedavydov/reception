@@ -58,7 +58,8 @@ glyphicon glyphicon-chevron-down"></span></h2>
 								mysql_query('SET NAMES utf8');
 
 
-						        $query = 'SELECT `date` , `time`, `status`, `theme`, `message` FROM appeals WHERE `status`="Отправлено" or `status`="Находятся на рассмотрении" order by `id` desc';
+						        $id = $_SESSION['id'];
+						        $query = 'SELECT `date` , `time`, `status`, `theme`, `message` FROM appeals WHERE (`status`="Отправлено" or `status`="Находятся на рассмотрении") and `user_id`="$id" order by `id` desc';
 						        $result = mysql_query($query);
 
 						        $count=0;
