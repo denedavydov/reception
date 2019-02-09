@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Хост: localhost:3306
--- Время создания: Фев 06 2019 г., 19:44
+-- Время создания: Фев 09 2019 г., 16:16
 -- Версия сервера: 5.7.24-0ubuntu0.18.04.1
 -- Версия PHP: 5.6.39-1+ubuntu18.04.1+deb.sury.org+1
 
@@ -34,6 +34,7 @@ CREATE TABLE `appeals` (
   `message` text NOT NULL,
   `status` varchar(50) NOT NULL,
   `date` varchar(10) NOT NULL,
+  `year` int(4) NOT NULL,
   `time` varchar(5) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
@@ -41,9 +42,9 @@ CREATE TABLE `appeals` (
 -- Дамп данных таблицы `appeals`
 --
 
-INSERT INTO `appeals` (`id`, `user_id`, `mail`, `theme`, `message`, `status`, `date`, `time`) VALUES
-(1, 1, 'denedavydov@gmail.com', 'dfgfdgdfgdf', 'fdgfdgfdgfdgfdg', 'Отправлено', '04.02.2019', '09:33'),
-(2, 1, 'denedavydov@gmail.com', 'ываываывавыавыа', 'ывавыавыавыавыавыа', 'Отправлено', '04.02.2019', '10:05');
+INSERT INTO `appeals` (`id`, `user_id`, `mail`, `theme`, `message`, `status`, `date`, `year`, `time`) VALUES
+(1, 1, 'denedavydov@gmail.com', 'dfgfdgdfgdf', 'fdgfdgfdgfdgfdg', 'Отправлено', '04.02.2019', 0, '09:33'),
+(2, 1, 'denedavydov@gmail.com', 'ываываывавыавыа', 'ывавыавыавыавыавыа', 'Отправлено', '04.02.2019', 0, '10:05');
 
 -- --------------------------------------------------------
 
