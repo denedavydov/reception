@@ -77,6 +77,7 @@
 			            session_start();
 	            		if ($_POST['login']=='admin@gmail.com') {
 							$_SESSION['username'] = 'admin';
+							$_SESSION['mail'] = 'admin@gmail.com';
 					        $_SESSION['page'] = 'admin/user=admin';
 					        header('location:resources/'.$_SESSION['page'].'.php');
 						} else{

@@ -36,7 +36,7 @@
 						$mail = $_SESSION['username'];
 						$theme = htmlspecialchars($_POST['theme']);
 						$message = htmlspecialchars($_POST['message']);
-						$status = "Отправлено";
+						$status = "red";
 						$date=date("d.m");
 						$year=date("Y");
 						$time=date("h:i");
@@ -58,7 +58,7 @@
 		                	{
 			                	//отправка письма
 						    
-							    $mail_to = "barash2229@gmail.com"; // Почта получателя
+							    $mail_to = $_SESSION['mail']; // Почта получателя
 
 								$type = 'plain'; //Можно поменять на html; plain означяет: будет присылаться чистый текст.
 								$charset = 'utf-8';
