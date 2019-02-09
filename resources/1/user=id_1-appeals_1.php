@@ -37,7 +37,8 @@
 						$theme = htmlspecialchars($_POST['theme']);
 						$message = htmlspecialchars($_POST['message']);
 						$status = "Отправлено";
-						$date=date("d.m.Y");
+						$date=date("d.m");
+						$year=date("Y");
 						$time=date("h:i");
 
 
@@ -49,7 +50,7 @@
 						mysql_select_db($db_name) or die("Не найдена БД");
 						mysql_query('SET NAMES utf8');
 
-						$sql = 'INSERT INTO appeals (user_id, mail, theme, message, status, date, time) VALUES ("'.$user_id.'", "'.$mail.'", "'.$theme.'", "'.$message.'", "'.$status.'", "'.$date.'", "'.$time.'")';                              
+						$sql = 'INSERT INTO appeals (user_id, mail, theme, message, status, date, year, time) VALUES ("'.$user_id.'", "'.$mail.'", "'.$theme.'", "'.$message.'", "'.$status.'", "'.$date.'", "'.$year.'", "'.$time.'")';                              
 	    
 		                if(!mysql_query($sql))
 		                {echo '<p class="text-danger">ОШИБКА ОТПРАВКИ ОБРАЩЕНИЯ!</p>';} 
@@ -126,8 +127,7 @@ glyphicon glyphicon-info-sign"></span> Обработанные обращени
 												mysql_query('SET NAMES utf8');
 
 
-												/**WHERE `status`=""*/
-							                    $query = 'SELECT `date` , `time`, `theme`, `message` FROM appeals order by `id` desc';
+							                    $query = 'SELECT `date` , `time`, `theme`, `message` FROM appeals WHERE `status`="Получен ответ" order by `id` desc';
 							                    $result = mysql_query($query);
 
 						                        $count=0;
