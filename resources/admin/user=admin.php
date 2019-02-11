@@ -30,9 +30,9 @@
 					<li role="presentation"><a href="#"><span class="glyphicon glyphicon-envelope"></span> Архив </a></li>
 				</ul>
 			</div>
-
+			<!--Вывод таблицы "полученые обращения"-->
 			<div class="col-xs-12">
-				<a onclick="$('#appeals').slideToggle('slow');" style="cursor: pointer; text-decoration: none;">
+				<a onclick="$('#appeals_received').slideToggle('slow');" style="cursor: pointer; text-decoration: none;">
 				<h2 class="text-primary">Полученные обращения <?php 
 								
 								include('../../templates/config.php');
@@ -51,11 +51,11 @@
 				?> <span class="glyphicon glyphicon-chevron-down"></span></h2>
 				</a>
 
-				<div  id="appeals" style="display: none;">
+				<div  id="appeals_received" style="display: none;">
 					<div class="table-responsive">
 						<table class="table table-hover table-bordered text-center">
 							<tr class="info">
-								<td><strong>Дата</strong></td>
+								<td colspan="2"><strong>Дата</strong></td>
 								<td><strong>Время</strong></td>
 								<td><strong>От кого</strong></td>
 								<td><strong>Тема</strong></td>
@@ -72,7 +72,7 @@
 								mysql_query('SET NAMES utf8');
 
 
-						        $query = 'SELECT `date` , `time` , `mail`, `theme`, `message` FROM appeals WHERE `status`="Отпралено" or `status`="Отправлено" order by `id` desc';
+						        $query = 'SELECT `date`, `year` , `time` , `mail`, `theme`, `message` FROM appeals WHERE `status`="Отпралено" or `status`="Отправлено" order by `id` desc';
 						        $result = mysql_query($query);
 
 						        $count=0;
@@ -95,9 +95,9 @@
 					</div>
 				</div>
 			</div>
-
+			<!--Вывод таблицы "Обрабатываемые обращения"-->
 			<div class="col-xs-12">
-				<a onclick="$('#appeals').slideToggle('slow');" style="cursor: pointer; text-decoration: none;">
+				<a onclick="$('#appeals_processed').slideToggle('slow');" style="cursor: pointer; text-decoration: none;">
 				<h2 class="text-primary">Обрабатываемые обращения <?php 
 								
 								include('../../templates/config.php');
@@ -116,11 +116,11 @@
 				?> <span class="glyphicon glyphicon-chevron-down"></span></h2>
 				</a>
 
-				<div  id="appeals" style="display: none;">
+				<div  id="appeals_processed" style="display: none;">
 					<div class="table-responsive">
 						<table class="table table-hover table-bordered text-center">
 							<tr class="info">
-								<td><strong>Дата</strong></td>
+								<td colspan="2"><strong>Дата</strong></td>
 								<td><strong>Время</strong></td>
 								<td><strong>Тема</strong></td>
 								<td><strong>Текст</strong></td>
@@ -136,7 +136,7 @@
 								mysql_query('SET NAMES utf8');
 
 
-						        $query = 'SELECT `date` , `time`, `theme`, `message` FROM appeals WHERE `status`="Отпралено" or `status`="Находится на рассмотрении" order by `id` desc';
+						        $query = 'SELECT `date`, `year` , `time`, `theme`, `message` FROM appeals WHERE `status`="Отпралено" or `status`="Находится на рассмотрении" order by `id` desc';
 						        $result = mysql_query($query);
 
 						        $count=0;
