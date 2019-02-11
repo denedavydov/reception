@@ -39,6 +39,7 @@
 glyphicon glyphicon-chevron-down"></span></h2>
 				</a>
 				<div  id="appeals" style="display: none;">
+					<p class="text-warning"><span class="glyphicon glyphicon-info-sign"></span> Обращения получившие ответ находятся во вкладке Услуги >> Подача обращения</p>
 					<div class="table-responsive">
 						<table class="table table-hover table-bordered text-center">
 							<tr class="info">
@@ -59,7 +60,7 @@ glyphicon glyphicon-chevron-down"></span></h2>
 
 
 						        $id = $_SESSION['id'];
-						        $query = "SELECT `date`, `year` , `time`, `status`, `theme`, `message` FROM appeals WHERE `user_id`='$id' and (`status`='Отправлено' or `status`='Находятся на рассмотрении') order by `id` desc";
+						        $query = "SELECT `date`, `year` , `time`, `status`, `theme`, `message` FROM appeals WHERE `user_id`='$id' and (`status`='Отправлено' or `status`='Находится на рассмотрении') order by `id` desc";
 						        $result = mysql_query($query);
 
 						        $count=0;
