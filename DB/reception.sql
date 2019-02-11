@@ -3,9 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- Хост: localhost:3306
--- Время создания: Фев 09 2019 г., 16:16
--- Версия сервера: 5.7.24-0ubuntu0.18.04.1
--- Версия PHP: 5.6.39-1+ubuntu18.04.1+deb.sury.org+1
+-- Время создания: Фев 11 2019 г., 12:10
+-- Версия сервера: 5.7.25-0ubuntu0.18.04.2
+-- Версия PHP: 5.6.40-1+ubuntu18.04.1+deb.sury.org+1
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET time_zone = "+00:00";
@@ -33,8 +33,8 @@ CREATE TABLE `appeals` (
   `theme` varchar(200) NOT NULL,
   `message` text NOT NULL,
   `status` varchar(50) NOT NULL,
-  `date` varchar(10) NOT NULL,
-  `year` int(4) NOT NULL,
+  `date` varchar(6) NOT NULL,
+  `year` varchar(4) NOT NULL,
   `time` varchar(5) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
@@ -43,8 +43,11 @@ CREATE TABLE `appeals` (
 --
 
 INSERT INTO `appeals` (`id`, `user_id`, `mail`, `theme`, `message`, `status`, `date`, `year`, `time`) VALUES
-(1, 1, 'denedavydov@gmail.com', 'dfgfdgdfgdf', 'fdgfdgfdgfdgfdg', 'Отправлено', '04.02.2019', 0, '09:33'),
-(2, 1, 'denedavydov@gmail.com', 'ываываывавыавыа', 'ывавыавыавыавыавыа', 'Отправлено', '04.02.2019', 0, '10:05');
+(1, 1, 'denedavydov@gmail.com', 'dfgfdgdfgdf', 'fdgfdgfdgfdgfdg', 'Отправлено', '04.02.', '2019', '09:33'),
+(2, 1, 'denedavydov@gmail.com', 'ываываывавыавыа', 'ывавыавыавыавыавыа', 'Отправлено', '04.02.', '2019', '10:05'),
+(3, 1, 'denedavydov@gmail.com', 'ываывавыавыавы ', 'ыва выа выа выа ыва выа ', 'Отправлено', '11.02.', '2019', '12:06'),
+(4, 1, 'denedavydov@gmail.com', 'ewrw cv werr wer ', 'wer wer ewr ewr wer wer ', 'Отправлено', '11.02.', '2019', '12:08'),
+(5, 1, 'denedavydov@gmail.com', 'dfgd kljklj', 'rfdljgkldfjk lgjdfklklg dfjlkjg k', 'Отправлено', '11.02.', '2019', '12:09');
 
 -- --------------------------------------------------------
 
@@ -77,6 +80,12 @@ INSERT INTO `users` (`id`, `name`, `surname`, `login`, `passport`, `status`, `pa
 --
 
 --
+-- Индексы таблицы `appeals`
+--
+ALTER TABLE `appeals`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Индексы таблицы `users`
 --
 ALTER TABLE `users`
@@ -86,6 +95,11 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT для сохранённых таблиц
 --
 
+--
+-- AUTO_INCREMENT для таблицы `appeals`
+--
+ALTER TABLE `appeals`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 --
 -- AUTO_INCREMENT для таблицы `users`
 --

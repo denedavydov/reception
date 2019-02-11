@@ -36,8 +36,8 @@
 						$mail = $_SESSION['username'];
 						$theme = htmlspecialchars($_POST['theme']);
 						$message = htmlspecialchars($_POST['message']);
-						$status = "red";
-						$date=date("d.m");
+						$status = "Отправлено";
+						$date=date("d.m.");
 						$year=date("Y");
 						$time=date("h:i");
 
@@ -51,14 +51,14 @@
 						mysql_query('SET NAMES utf8');
 
 						$sql = 'INSERT INTO appeals (user_id, mail, theme, message, status, date, year, time) VALUES ("'.$user_id.'", "'.$mail.'", "'.$theme.'", "'.$message.'", "'.$status.'", "'.$date.'", "'.$year.'", "'.$time.'")';                              
-	    
+
 		                if(!mysql_query($sql))
 		                {echo '<p class="text-danger">ОШИБКА ОТПРАВКИ ОБРАЩЕНИЯ!</p>';} 
 		                else 
 		                	{
 			                	//отправка письма
 						    
-							    $mail_to = $_SESSION['mail']; // Почта получателя
+							    $mail_to = "denedavydov@gmail.com"; // Почта получателя
 
 								$type = 'plain'; //Можно поменять на html; plain означяет: будет присылаться чистый текст.
 								$charset = 'utf-8';
@@ -78,6 +78,8 @@
 
 							mysql_free_result($result);
 				    		mysql_close($link);
+
+				    		$answer='<p>Обращение отправлено!</p>';
 					}
 			?>
 
@@ -98,6 +100,10 @@
 							<button type="submit" class="btn btn-success" name="enter"><span class="glyphicon glyphicon-log-in"></span> Отправить </button>
 						</form>
 
+						<?php
+							echo $answer;
+						?>
+
 					</div>
 
 
@@ -112,7 +118,7 @@ glyphicon glyphicon-info-sign"></span> Обработанные обращени
 									<div class="table-responsive">
 										<table class="table table-hover table-bordered text-center">
 											<tr class="info">
-												<td><strong>Дата</strong></td>
+												<td colspan="2"><strong>Дата</strong></td>
 												<td><strong>Время</strong></td>
 												<td><strong>Тема</strong></td>
 												<td><strong>Текст</strong></td>
@@ -128,7 +134,7 @@ glyphicon glyphicon-info-sign"></span> Обработанные обращени
 
 
 							                    $id = $_SESSION['id'];
-							                    $query = 'SELECT `date` , `time`, `theme`, `message` FROM appeals WHERE `status`="Получен ответ" and `user_id`="$id" order by `id` desc';
+							                    $query = 'SELECT `date`, `year`, `time`, `theme`, `message` FROM appeals order by `id` desc';
 							                    $result = mysql_query($query);
 
 						                        $count=0;
