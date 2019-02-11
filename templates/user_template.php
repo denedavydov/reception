@@ -42,7 +42,7 @@ glyphicon glyphicon-chevron-down"></span></h2>
 					<div class="table-responsive">
 						<table class="table table-hover table-bordered text-center">
 							<tr class="info">
-								<td><strong>Дата</strong></td>
+								<td colspan="2"><strong>Дата</strong></td>
 								<td><strong>Время</strong></td>
 								<td><strong>Статус</strong></td>
 								<td><strong>Тема</strong></td>
@@ -59,7 +59,7 @@ glyphicon glyphicon-chevron-down"></span></h2>
 
 
 						        $id = $_SESSION['id'];
-						        $query = 'SELECT `date` , `time`, `status`, `theme`, `message` FROM appeals WHERE (`status`="Отправлено" or `status`="Находятся на рассмотрении") and `user_id`="$id" order by `id` desc';
+						        $query = "SELECT `date`, `year` , `time`, `status`, `theme`, `message` FROM appeals WHERE `user_id`='$id' and (`status`='Отправлено' or `status`='Находятся на рассмотрении') order by `id` desc";
 						        $result = mysql_query($query);
 
 						        $count=0;
