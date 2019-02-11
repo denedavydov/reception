@@ -58,7 +58,7 @@
 		                	{
 			                	//отправка письма
 						    
-							    $mail_to = "denedavydov@gmail.com"; // Почта получателя
+							    $mail_to = $_SESSION['mail']; // Почта получателя
 
 								$type = 'plain'; //Можно поменять на html; plain означяет: будет присылаться чистый текст.
 								$charset = 'utf-8';
@@ -134,7 +134,7 @@ glyphicon glyphicon-info-sign"></span> Обработанные обращени
 
 
 							                    $id = $_SESSION['id'];
-							                    $query = 'SELECT `date`, `year`, `time`, `theme`, `message` FROM appeals order by `id` desc';
+							                    $query = "SELECT `date`, `year`, `time`, `theme`, `message` FROM appeals WHERE `user_id`='$id' and `status`='Получен ответ' order by `id` desc";
 							                    $result = mysql_query($query);
 
 						                        $count=0;

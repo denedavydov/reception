@@ -77,11 +77,12 @@
 			            session_start();
 	            		if ($_POST['login']=='admin@gmail.com') {
 							$_SESSION['username'] = 'admin';
-							$_SESSION['mail'] = 'admin@gmail.com';
+							$_SESSION['mail'] = 'admin@gmail.com'; // mail админа
 					        $_SESSION['page'] = 'admin/user=admin';
 					        header('location:resources/'.$_SESSION['page'].'.php');
 						} else{
 					        $_SESSION['username'] = $login;
+					        $_SESSION['mail'] = 'admin@gmail.com'; // mail админа
 					        $_SESSION['page'] = $id.'/'.'user=id_'.$id;
 					        $_SESSION['name'] = $name;
 					        $_SESSION['id'] = $id;
