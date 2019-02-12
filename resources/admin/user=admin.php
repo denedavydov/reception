@@ -72,17 +72,22 @@
 								mysql_query('SET NAMES utf8');
 
 
-						        $query = 'SELECT `date`, `year` , `time` , `mail`, `theme`, `message` FROM appeals WHERE `status`="Отпралено" or `status`="Отправлено" order by `id` desc';
+						        $query = 'SELECT `date`, `year` , `time` , `mail`, `theme`, `message`, `id` FROM appeals WHERE `status`="Отправлено" order by `id` desc';
 						        $result = mysql_query($query);
 
 						        $count=0;
+						        $count_write_id=0;
 
 						        while ($line = mysql_fetch_array($result, MYSQL_ASSOC)) {
 						        echo "\t<tr>\n";
 						                foreach ($line as $col_value) {
-						                    echo "\t\t<td>$col_value</td>\n";
+						                	if ($count_write_id != 6) {
+						                		echo "\t\t<td>$col_value</td>\n";
+						                	} else $id = $col_value;
+						                    $count_write_id++;
 						                }
-						                echo '<td><button type="submit" class="btn btn-info" name="status"><span class="glyphicon glyphicon-share-alt"></span> Принять к рассмотрению</button></td>';
+						                $count_write_id = 0;
+						                echo '<td><button type="submit" value="'.$id.'" class="btn btn-info" name="status"><span class="glyphicon glyphicon-share-alt"></span> Принять к рассмотрению</button></td>';
 						                $count++;
 						            echo "\t</tr>\n";
 						        }
@@ -122,6 +127,7 @@
 							<tr class="info">
 								<td colspan="2"><strong>Дата</strong></td>
 								<td><strong>Время</strong></td>
+								<td><strong>От кого</strong></td>
 								<td><strong>Тема</strong></td>
 								<td><strong>Текст</strong></td>
 								<td><strong>Статус</strong></td>
@@ -136,17 +142,22 @@
 								mysql_query('SET NAMES utf8');
 
 
-						        $query = 'SELECT `date`, `year` , `time`, `theme`, `message` FROM appeals WHERE `status`="Отпралено" or `status`="Находится на рассмотрении" order by `id` desc';
+						        $query = 'SELECT `date`, `year` , `time`, `mail`, `theme`, `message`, `id` FROM appeals WHERE `status`="Находится на рассмотрении" order by `id` desc';
 						        $result = mysql_query($query);
 
 						        $count=0;
+						        $count_write_id=0;
 
 						        while ($line = mysql_fetch_array($result, MYSQL_ASSOC)) {
 						        echo "\t<tr>\n";
 						                foreach ($line as $col_value) {
-						                    echo "\t\t<td>$col_value</td>\n";
+						                	if ($count_write_id != 6) {
+						                		echo "\t\t<td>$col_value</td>\n";
+						                	} else $id = $col_value;
+						                    $count_write_id++;
 						                }
-						                echo '<td><button type="submit" class="btn btn-success" name="status"><span class="glyphicon glyphicon-share-alt"></span> Направить ответ</button></td>';
+						                $count_write_id = 0;
+						                echo '<td><button type="submit" value="'.$id.'" class="btn btn-success" name="status"><span class="glyphicon glyphicon-share-alt"></span> Направить ответ</button></td>';
 						                $count++;
 						            echo "\t</tr>\n";
 						        }
