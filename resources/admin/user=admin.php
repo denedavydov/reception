@@ -30,6 +30,7 @@
 					<li role="presentation"><a href="#"><span class="glyphicon glyphicon-envelope"></span> Архив </a></li>
 				</ul>
 			</div>
+
 			<!--Вывод таблицы "полученые обращения"-->
 			<div class="col-xs-12">
 				<a onclick="$('#appeals_received').slideToggle('slow');" style="cursor: pointer; text-decoration: none;">
@@ -87,9 +88,24 @@
 						                    $count_write_id++;
 						                }
 						                $count_write_id = 0;
-						                echo '<td><button type="submit" value="'.$id.'" class="btn btn-info" name="status"><span class="glyphicon glyphicon-share-alt"></span> Принять к рассмотрению</button></td>';
+						                echo '<td><form method="POST"><button type="submit" value="'.$id.'" class="btn btn-info" name="status"><span class="glyphicon glyphicon-share-alt"></span> Принять к рассмотрению</button></form></td>';
 						                $count++;
 						            echo "\t</tr>\n";
+						        }
+
+						        if (isset($_POST['status'])) {
+						        	$id = $_POST['status'];
+						        	$query = "UPDATE `appeals` SET `status` = 'Находится на рассмотрении' WHERE `appeals`.`id` = '$id'";
+						        	$result = mysql_query($query);
+
+						        	$num_rows = mysql_num_rows($result);
+									if ($num_rows != 0) {
+										while ($line = mysql_fetch_array($result, MYSQL_ASSOC)) {
+								            foreach ($line as $col_value) {
+								                $login = $col_value;
+								                }
+								            }
+						        	}
 						        }
 
 						        mysql_free_result($result);
@@ -100,6 +116,7 @@
 					</div>
 				</div>
 			</div>
+
 			<!--Вывод таблицы "Обрабатываемые обращения"-->
 			<div class="col-xs-12">
 				<a onclick="$('#appeals_processed').slideToggle('slow');" style="cursor: pointer; text-decoration: none;">
@@ -157,7 +174,7 @@
 						                    $count_write_id++;
 						                }
 						                $count_write_id = 0;
-						                echo '<td><button type="submit" value="'.$id.'" class="btn btn-success" name="status"><span class="glyphicon glyphicon-share-alt"></span> Направить ответ</button></td>';
+						                echo '<td><button type="submit" value="'.$id.'" class="btn btn-success" name="answer"><span class="glyphicon glyphicon-share-alt"></span> Направить ответ</button></td>';
 						                $count++;
 						            echo "\t</tr>\n";
 						        }
