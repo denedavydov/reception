@@ -174,9 +174,24 @@
 						                    $count_write_id++;
 						                }
 						                $count_write_id = 0;
-						                echo '<td><button type="submit" value="'.$id.'" class="btn btn-success" name="answer"><span class="glyphicon glyphicon-share-alt"></span> Направить ответ</button></td>';
+						                echo '<td><form method="POST"><button type="submit" value="'.$id.'" class="btn btn-success" name="answer"><span class="glyphicon glyphicon-share-alt"></span> Направить ответ</button></form></td>';
 						                $count++;
 						            echo "\t</tr>\n";
+						        }
+
+						        if (isset($_POST['answer'])) {
+						        	$id = $_POST['answer'];
+						        	$query = "UPDATE `appeals` SET `status` = 'Получен ответ' WHERE `appeals`.`id` = '$id'";
+						        	$result = mysql_query($query);
+
+						        	$num_rows = mysql_num_rows($result);
+									if ($num_rows != 0) {
+										while ($line = mysql_fetch_array($result, MYSQL_ASSOC)) {
+								            foreach ($line as $col_value) {
+								                $login = $col_value;
+								                }
+								            }
+						        	}
 						        }
 
 						        mysql_free_result($result);
