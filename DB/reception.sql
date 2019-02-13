@@ -3,9 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- Хост: localhost:3306
--- Время создания: Фев 11 2019 г., 12:10
--- Версия сервера: 5.7.25-0ubuntu0.18.04.2
--- Версия PHP: 5.6.40-1+ubuntu18.04.1+deb.sury.org+1
+-- Время создания: Фев 13 2019 г., 20:08
+-- Версия сервера: 5.7.24-0ubuntu0.18.04.1
+-- Версия PHP: 5.6.39-1+ubuntu18.04.1+deb.sury.org+1
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET time_zone = "+00:00";
@@ -35,19 +35,21 @@ CREATE TABLE `appeals` (
   `status` varchar(50) NOT NULL,
   `date` varchar(6) NOT NULL,
   `year` varchar(4) NOT NULL,
-  `time` varchar(5) NOT NULL
+  `time` varchar(5) NOT NULL,
+  `answer` text NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
 -- Дамп данных таблицы `appeals`
 --
 
-INSERT INTO `appeals` (`id`, `user_id`, `mail`, `theme`, `message`, `status`, `date`, `year`, `time`) VALUES
-(1, 1, 'denedavydov@gmail.com', 'dfgfdgdfgdf', 'fdgfdgfdgfdgfdg', 'Отправлено', '04.02.', '2019', '09:33'),
-(2, 1, 'denedavydov@gmail.com', 'ываываывавыавыа', 'ывавыавыавыавыавыа', 'Отправлено', '04.02.', '2019', '10:05'),
-(3, 1, 'denedavydov@gmail.com', 'ываывавыавыавы ', 'ыва выа выа выа ыва выа ', 'Отправлено', '11.02.', '2019', '12:06'),
-(4, 1, 'denedavydov@gmail.com', 'ewrw cv werr wer ', 'wer wer ewr ewr wer wer ', 'Отправлено', '11.02.', '2019', '12:08'),
-(5, 1, 'denedavydov@gmail.com', 'dfgd kljklj', 'rfdljgkldfjk lgjdfklklg dfjlkjg k', 'Отправлено', '11.02.', '2019', '12:09');
+INSERT INTO `appeals` (`id`, `user_id`, `mail`, `theme`, `message`, `status`, `date`, `year`, `time`, `answer`) VALUES
+(1, 1, 'denedavydov@gmail.com', 'dfgfdgdfgdf', 'nvjdzvnjlkjgjh', 'Получен ответ', '04.02.', '2019', '09:33', 'szd,fvnl gfsiuh '),
+(2, 1, 'denedavydov@gmail.com', 'ываываывавыавыа', 'ывавыавыавыавыавыа', 'Получен ответ', '04.02.', '2019', '10:05', ''),
+(3, 1, 'denedavydov@gmail.com', 'ываывавыавыавы ', 'ыва выа выа выа ыва выа ', 'Отправлено', '11.02.', '2019', '12:06', ''),
+(4, 1, 'denedavydov@gmail.com', 'ewrw cv werr wer ', 'wer wer ewr ewr wer wer ', 'Находится на рассмотрении', '11.02.', '2019', '12:08', ''),
+(5, 1, 'denedavydov@gmail.com', 'dfgd kljklj', 'rfdljgkldfjk lgjdfklklg dfjlkjg k', 'Отправлено', '11.02.', '2019', '12:09', ''),
+(6, 1, 'denedavydov@gmail.com', '.knml  b', ',dm v;xmvdf\r\n\r\ndbs\r\nbr\r\n,bg\r\ndg,;br', 'Находится на рассмотрении', '12.02.', '2019', '11:26', '');
 
 -- --------------------------------------------------------
 
@@ -99,7 +101,7 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT для таблицы `appeals`
 --
 ALTER TABLE `appeals`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 --
 -- AUTO_INCREMENT для таблицы `users`
 --

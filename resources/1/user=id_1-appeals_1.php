@@ -109,11 +109,9 @@
 
 							<div class="col-xs-12">
 								<a onclick="$('#appeals').slideToggle('slow');" style="cursor: pointer; text-decoration: none;">
-									<h3 class="text-primary">Ваши предыдущие обращения <span class="
-glyphicon glyphicon-chevron-down"></span></h3>
+									<h3 class="text-primary">Ваши предыдущие обращения <span class="glyphicon glyphicon-chevron-down"></span></h3>
 								</a>
-								<p class="text-success"><span class="
-glyphicon glyphicon-info-sign"></span> Обработанные обращения</p>
+								<p class="text-success"><span class="glyphicon glyphicon-info-sign"></span> Обработанные обращения</p>
 								<div  id="appeals" style="display: none;">
 									<div class="table-responsive">
 										<table class="table table-hover table-bordered text-center">
@@ -122,6 +120,7 @@ glyphicon glyphicon-info-sign"></span> Обработанные обращени
 												<td><strong>Время</strong></td>
 												<td><strong>Тема</strong></td>
 												<td><strong>Текст</strong></td>
+												<td><strong>Ответ</strong></td>
 											</tr>
 
 											<?php
@@ -134,7 +133,7 @@ glyphicon glyphicon-info-sign"></span> Обработанные обращени
 
 
 							                    $id = $_SESSION['id'];
-							                    $query = "SELECT `date`, `year`, `time`, `theme`, `message` FROM appeals WHERE `user_id`='$id' and `status`='Получен ответ' order by `id` desc";
+							                    $query = "SELECT `date`, `year`, `time`, `theme`, `message`, `answer` FROM appeals WHERE `user_id`='$id' and `status`='Получен ответ' order by `id` desc";
 							                    $result = mysql_query($query);
 
 						                        $count=0;
