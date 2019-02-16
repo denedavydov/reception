@@ -16,11 +16,11 @@
 
 	<div class="container">
 		<div class="row">
-			
+
 			<!--шапка страницы-->
 			<?php
 				include('../../templates/header.php');
-			?>	
+			?>
 
 			<!--вывод меню-->
 			<div class="col-xs-12">
@@ -51,7 +51,7 @@ glyphicon glyphicon-chevron-down"></span></h2>
 							</tr>
 
 							<?php
-
+										echo $_SESSION['page'];
 						        include('../../templates/config.php');
 
 						       $link = mysql_connect($db_path, $db_login, $db_password);
@@ -92,7 +92,7 @@ glyphicon glyphicon-chevron-down"></span></h2>
 				<?php include('../../templates/footer.php'); ?>
 			</div>
 
-	
+
 		</div>
 	</div>
 

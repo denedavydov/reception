@@ -12,5 +12,5 @@
       <li role="presentation"><a href="#"><span class="glyphicon glyphicon-open-file"></span> Запись в летний лагерь</a></li>
     </ul>
   </li>
-	<li role="presentation"><a href="#"><span class="glyphicon glyphicon-user"></span> Личный кабинет</a></li>
+	<li role="presentation"><a href="<?php echo 'resources/'.$_SESSION['page'].'-account_settings_'.$_SESSION['id'].'.php'; ?>"><span class="glyphicon glyphicon-user"></span> Личный кабинет</a></li>
 </ul>
