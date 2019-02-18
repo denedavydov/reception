@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Хост: localhost:3306
--- Время создания: Фев 13 2019 г., 20:08
+-- Время создания: Фев 18 2019 г., 18:14
 -- Версия сервера: 5.7.24-0ubuntu0.18.04.1
 -- Версия PHP: 5.6.39-1+ubuntu18.04.1+deb.sury.org+1
 
@@ -54,6 +54,20 @@ INSERT INTO `appeals` (`id`, `user_id`, `mail`, `theme`, `message`, `status`, `d
 -- --------------------------------------------------------
 
 --
+-- Структура таблицы `appointments`
+--
+
+CREATE TABLE `appointments` (
+  `id` int(11) NOT NULL,
+  `day` int(1) NOT NULL,
+  `time` int(2) NOT NULL,
+  `status` varchar(9) NOT NULL,
+  `name` varchar(150) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+-- --------------------------------------------------------
+
+--
 -- Структура таблицы `users`
 --
 
@@ -88,6 +102,12 @@ ALTER TABLE `appeals`
   ADD PRIMARY KEY (`id`);
 
 --
+-- Индексы таблицы `appointments`
+--
+ALTER TABLE `appointments`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Индексы таблицы `users`
 --
 ALTER TABLE `users`
@@ -102,6 +122,11 @@ ALTER TABLE `users`
 --
 ALTER TABLE `appeals`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+--
+-- AUTO_INCREMENT для таблицы `appointments`
+--
+ALTER TABLE `appointments`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 --
 -- AUTO_INCREMENT для таблицы `users`
 --
