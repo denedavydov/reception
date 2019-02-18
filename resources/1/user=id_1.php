@@ -51,7 +51,6 @@ glyphicon glyphicon-chevron-down"></span></h2>
 							</tr>
 
 							<?php
-										echo $_SESSION['page'];
 						        include('../../templates/config.php');
 
 						       $link = mysql_connect($db_path, $db_login, $db_password);

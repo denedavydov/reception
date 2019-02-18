@@ -6,7 +6,7 @@
       <span class="glyphicon glyphicon-th-list"></span> Услуги <span class="caret"></span>
     </a>
     <ul class="dropdown-menu">
-      <li role="presentation"><a href="#"><span class="glyphicon glyphicon-pencil"></span> Записаться на прием</a></li>
+      <li role="presentation"><a href="<?php echo 'resources/'.$_SESSION['page'].'-appointments_'.$_SESSION['id'].'.php'; ?>"><span class="glyphicon glyphicon-pencil"></span> Записаться на прием</a></li>
       <li role="presentation"><a href="<?php echo 'resources/'.$_SESSION['page'].'-appeals_'.$_SESSION['id'].'.php'; ?>"><span class="glyphicon glyphicon-file"></span> Подача обращения </a></li>
       <li role="presentation"><a href="#"><span class="glyphicon glyphicon-open-file"></span> Запись в ШРР</a></li>
       <li role="presentation"><a href="#"><span class="glyphicon glyphicon-open-file"></span> Запись в летний лагерь</a></li>

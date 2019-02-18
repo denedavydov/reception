@@ -103,7 +103,14 @@
 
 						/*//файлы для копирования
 						$file='templates/appeals_template.php';
-						$newfile='resources/'.$id.'/user=id_'.$id.'_appeals-'.$id.'.php';
+						$newfile='resources/'.$id.'/user=id_'.$id.'-appeals_'.$id.'.php';
+
+						//создание обращений на странице пользователя
+						copy($file, $newfile);
+
+						//файлы для копирования
+						$file='templates/appointments_template.php';
+						$newfile='resources/'.$id.'/user=id_'.$id.'-appointments_'.$id.'.php';
 
 						//создание обращений на странице пользователя
 						copy($file, $newfile);*/
