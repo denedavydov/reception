@@ -11,7 +11,7 @@
 	<div class="container">
 		<div class="row">
 		<div class="col-xs-12 col-sm-8 col-sm-offset-2 col-md-6 col-md-offset-3">
-				
+
 				<?php
 					include('templates/title_name.php');
 				?>
@@ -23,8 +23,8 @@
 
 				<?php
             	if (isset($_POST['register'])) {
-               		
-               		$name = htmlspecialchars($_POST['name']); 
+
+               		$name = htmlspecialchars($_POST['name']);
 	                $surname = htmlspecialchars($_POST['surname']);
 	                $login = htmlspecialchars($_POST['login']);
 	                $passport = htmlspecialchars($_POST['passport']);
@@ -53,22 +53,22 @@
 				    	echo '<p class="text-danger">По такому адресу электронной почты уже зарегистрирован пользователь!</p>';
 				    }else{
 
-	                $sql = 'INSERT INTO users (name, surname, login, passport, status, password) VALUES ("'.$name.'", "'.$surname.'", "'.$login.'", "'.$passport.'", "'.$status.'", "'.$password.'")';                              
-	    
+	                $sql = 'INSERT INTO users (name, surname, login, passport, status, password) VALUES ("'.$name.'", "'.$surname.'", "'.$login.'", "'.$passport.'", "'.$status.'", "'.$password.'")';
+
 	                if(!mysql_query($sql))
-	                {echo '<p class="text-danger">ОШИБКА РЕГИСТРАЦИИ!</p>';} 
-	                else 
+	                {echo '<p class="text-danger">ОШИБКА РЕГИСТРАЦИИ!</p>';}
+	                else
 	                {
 
 	                	//отправка письма пользователю при регистрации
-				    
+
 					    $mail_to = $login;
 
 						$type = 'plain'; //Можно поменять на html; plain означяет: будет присылаться чистый текст.
 						$charset = 'utf-8';
 
 						include('templates/smtp_func.php');
-						
+
 						$message = $surname.', Вы успешно зарегистрировались в "Электронная Приёмная" ГБОУ средней общеобразовательной школы № 416 Петродворцового района Санкт-Петербурга. Ваш логин для входа: '.$login.', Ваш пароль: '.$password.'. Вход в систему: https://reception.school416spb.ru';
 						$subject = 'Регистрация "Электронная приёмная"';
 						$mail_from = 'support@school416spb.ru';
@@ -92,9 +92,9 @@
 			            		}}
 
 			            //создание каталога пользователя
-			            mkdir('resources/'.$id,0755);		
-						
-						//файлы для копирования            
+			            mkdir('resources/'.$id,0755);
+
+						//файлы для копирования
 						$file='templates/user_template.php';
 						$newfile='resources/'.$id.'/user=id_'.$id.'.php';
 
@@ -113,6 +113,13 @@
 						$newfile='resources/'.$id.'/user=id_'.$id.'-appointments_'.$id.'.php';
 
 						//создание обращений на странице пользователя
+						copy($file, $newfile);
+
+						//файлы для копирования
+						$file='templates/account_settings_template.php';
+						$newfile='resources/'.$id.'/user=id_'.$id.'-account_settings_'.$id.'.php';
+
+						//создание обращений на странице пользователя
 						copy($file, $newfile);*/
 
 	                	session_start();
@@ -121,7 +128,7 @@
 	                	exit();
 	                }
 	            }
-	                
+
 	                mysql_free_result($result);
 	                mysql_close($link);
 		            }
@@ -176,7 +183,7 @@
 				</form>
 
 				<?php include('templates/footer.php'); ?>
-		</div>	
+		</div>
 
 	</div>
 	</div>
