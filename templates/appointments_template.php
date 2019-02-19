@@ -30,7 +30,65 @@
 			</div>
 
 			<div class="col-xs-12">
-				<h2 class="text-primary">Записи</h2>
+					<h2 class="text-primary">Свободные записи</h2>
+				
+					<div class="table-responsive">
+						<table class="table table-hover table-bordered text-center">
+							<tr class="info">
+								<td><strong>Дата</strong></td>
+								<td><strong>Время</strong></td>
+								<td><strong>Произвести запись</strong></td>
+							</tr>
+
+							<?php
+						        include('../../templates/config.php');
+
+						       $link = mysql_connect($db_path, $db_login, $db_password);
+								mysql_select_db($db_name) or die("Не найдена БД");
+								mysql_query('SET NAMES utf8');
+
+
+						        $query = 'SELECT `day`, `time`, `id` FROM appointments WHERE `status`="Свободно" order by `id` desc';
+						        $result = mysql_query($query);
+
+						        $count=0;
+						        $count_write_id=0;
+
+						        while ($line = mysql_fetch_array($result, MYSQL_ASSOC)) {
+						        echo "\t<tr>\n";
+						                foreach ($line as $col_value) {
+						                	if ($count_write_id != 2) {
+						                		echo "\t\t<td>$col_value</td>\n";
+						                	} else $id = $col_value;
+						                    $count_write_id++;
+						                }
+						                $count_write_id = 0;
+						                echo '<td><form method="POST"><button type="submit" value="'.$id.'" class="btn btn-success" name="status"><span class="glyphicon glyphicon-share-alt"></span> Записаться на прием </button></form></td>';
+						                $count++;
+						            echo "\t</tr>\n";
+						        }
+
+						        if (isset($_POST['status'])) {
+						        	$id = $_POST['status'];
+						        	$query = "UPDATE `appointments` SET `status` = 'Занята' WHERE `appointments`.`id` = '$id'";
+						        	$result = mysql_query($query);
+
+						        	$num_rows = mysql_num_rows($result);
+									if ($num_rows != 0) {
+										while ($line = mysql_fetch_array($result, MYSQL_ASSOC)) {
+								            foreach ($line as $col_value) {
+								                $login = $col_value;
+								                }
+								            }
+						        	}
+						        }
+
+						        mysql_free_result($result);
+						        mysql_close($link);
+							?>
+
+						</table>
+					</div>
 			</div>
 
 
