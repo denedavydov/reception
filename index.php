@@ -82,7 +82,6 @@
 					        header('location:resources/'.$_SESSION['page'].'.php');
 						} else{
 					        $_SESSION['username'] = $login;
-					        $_SESSION['mail'] = 'admin@gmail.com'; // mail админа
 					        $_SESSION['page'] = $id.'/'.'user=id_'.$id;
 					        $_SESSION['name'] = $name;
 					        $_SESSION['id'] = $id;

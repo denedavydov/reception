@@ -69,8 +69,12 @@
 						        }
 
 						        if (isset($_POST['status'])) {
+
 						        	$id = $_POST['status'];
-						        	$query = "UPDATE `appointments` SET `status` = 'Занята' WHERE `appointments`.`id` = '$id'";
+						        	$name = $_SESSION['name'];
+						        	$mail = $_SESSION['username'];
+
+						        	$query = "UPDATE `appointments` SET `status` = 'Занята', `name` = '$name', `mail` = '$mail' WHERE `appointments`.`id` = '$id'";
 						        	$result = mysql_query($query);
 
 						        	$num_rows = mysql_num_rows($result);
