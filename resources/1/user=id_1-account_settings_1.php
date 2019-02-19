@@ -9,42 +9,20 @@
 <html lang="ru">
 <head>
 	<base href="/reception/" /><!--абсолютный путь-->
-  <meta charset="utf-8" />
-	<meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0"/>
-	<title><?php echo $_SESSION['name'];?></title>
-	<link rel="stylesheet" href="bootstrap/css/bootstrap.min.css" />
-	<link rel="stylesheet" href="style.css?<?php echo time(); ?>" />
-	<link rel="shortcut icon" href="favicon.ico" />
-	<link rel="apple-touch-icon" sizes="152x152" href="favicon.png" />
-	<script src="js/jquery.min.js"></script>
-	<script src="bootstrap/js/bootstrap.min.js"></script>
+	<?php
+		include('../../templates/head.php');
+	?>
 </head>
+<body>
 <body>
 
 	<div class="container">
 		<div class="row">
 
 			<!--шапка страницы-->
-      <div class="col-md-1 col-xs-12 col-sm-6">
-      	<p class="text-center">
-      		<img src="img/logo.jpg" alt="логотип" width="100" />
-      	</p>
-      </div>
-
-      <div class="col-md-5 col-xs-12 col-sm-6">
-      	<h1 class="text-primary text-center" style="text-shadow: 2px 2px 5px rgba(0,0,0,0.3);">Личный кабинет</h1>
-      </div>
-
-      <div class="col-md-4 text-center col-xs-12 col-sm-6">
-      	<p class="text-warning" style="margin-top: 20px;">ГБОУ средняя общеобразовательная школа № 416<br/> Петродворцового района Санкт-Петербурга</p>
-      </div>
-
-      <div class="col-md-2 col-xs-12 col-sm-6">
-      	<form action="" method="POST">
-      		<button type="submit" class="btn btn-danger btn-block" name="exit" style="margin-top: 20px;"><span class="glyphicon glyphicon-log-out"></span> Выход</button>
-      	</form>
-      </div>
+			<?php
+				include('../../templates/header.php');
+			?>
 
 			<!--вывод меню-->
 			<div class="col-xs-12">
@@ -70,11 +48,46 @@
 				<h2 class="text-primary">Настройка профиля</h2>
 			</div>
 
-			<div class="col-xs-12 text-primary" method="get">
-        <h5>Имя пользователя:</h5>
-        <input type="text" name="name" value="<?php echo $_SESSION['name']; ?>">
-        <button type="button" name="name">Изменить</button>
-			</div>
+			<form action="" method="POST" class="col-xs-12 col-md-5 form-horizontal">
+
+				<label>Логин пользователя:</label>
+				<div class="input-group">
+						<span class="input-group-addon" id="basic-addon1"></span>
+						<input type="text" name="name" autocomplete="off" class="form-control" placeholder="<?php echo $_SESSION['name']; ?>" aria-describedby="basic-addon1">
+				</div>
+
+				<div class="input-group">
+						<span class="input-group-addon" id="basic-addon1"></span>
+						<input type="text" name="name" autocomplete="off" class="form-control" placeholder="<?php  ?>" aria-describedby="basic-addon1">
+				</div>
+
+				<div class="input-group">
+						<span class="input-group-addon" id="basic-addon1"></span>
+						<input type="password" name="password" maxlength="8" minlength="6" autocomplete="off" class="form-control" placeholder="Пароль пользователя" aria-describedby="basic-addon1">
+				</div>
+
+				<div class="input-group">
+						<span class="input-group-addon" id="basic-addon1"></span>
+						<input type="password" name="password" maxlength="8" minlength="6" autocomplete="off" class="form-control" placeholder="Электронная почта" aria-describedby="basic-addon1">
+				</div>
+
+				<div class="input-group">
+						<span class="input-group-addon" id="basic-addon1"></span>
+						<input type="password" name="password" maxlength="8" minlength="6" autocomplete="off" class="form-control" placeholder="Паспорт" aria-describedby="basic-addon1">
+				</div>
+
+				<div class="input-group">
+						<span class="input-group-addon" id="basic-addon1"></span>
+						<input type="password" name="password" maxlength="8" minlength="6" autocomplete="off" class="form-control" placeholder="ФИО ребёнка" aria-describedby="basic-addon1">
+				</div>
+
+				<div class="input-group">
+						<span class="input-group-addon" id="basic-addon1"></span>
+						<input type="password" name="password" maxlength="8" minlength="6" autocomplete="off" class="form-control" placeholder="Класс ребёнка" aria-describedby="basic-addon1">
+				</div>
+
+					<button type="submit" class="btn btn-primary" name="enter"><span class="glyphicon glyphicon-edit"></span> Сохранить изменения </button>
+			</form>
 
 			<!--подвал-->
 			<div class="col-xs-12 text-center">
