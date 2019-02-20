@@ -51,7 +51,7 @@
 
 
 						        $mail = $_SESSION['username'];
-						        $query = "SELECT `day`, `time`, `theme` FROM appointments WHERE `mail`='$mail' order by `id` desc";
+						        $query = "SELECT `day`, `time`, `theme` FROM appointments WHERE `mail`='$mail' order by `id` asc";
 						        $result = mysql_query($query);
 
 						        $count=0;

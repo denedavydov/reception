@@ -31,6 +31,14 @@
 
 			<div class="col-xs-12">
 					<h2 class="text-primary">Свободные записи</h2>
+
+					<form action="" method="POST">
+						<label>Тема обращения:</label>
+						<div class="input-group">
+							  <span class="input-group-addon" id="basic-addon1"><span class="glyphicon glyphicon-comment"></span></span>
+							  <input type="text" name="name" required="" autocomplete="off" class="form-control" placeholder="Успеваемость ребенка" aria-describedby="basic-addon1">
+						</div><br/>
+					
 				
 					<div class="table-responsive">
 						<table class="table table-hover table-bordered text-center">
@@ -63,7 +71,7 @@
 						                    $count_write_id++;
 						                }
 						                $count_write_id = 0;
-						                echo '<td><form method="POST"><button type="submit" value="'.$id.'" class="btn btn-success" name="status"><span class="glyphicon glyphicon-share-alt"></span> Записаться на прием </button></form></td>';
+						                echo '<td><button type="submit" value="'.$id.'" class="btn btn-success" name="status"><span class="glyphicon glyphicon-share-alt"></span> Записаться на прием </button></td>';
 						                $count++;
 						            echo "\t</tr>\n";
 						        }
@@ -93,6 +101,7 @@
 
 						</table>
 					</div>
+					</form>
 			</div>
 
 
