@@ -44,7 +44,7 @@
 							<table class="table table-hover table-bordered text-center">
 								<tr class="info">
 									<td><strong>Дата</strong></td>
-									<td><strong>Время</strong></td>
+									<td><strong>Время (ч)</strong></td>
 									<td><strong>Произвести запись</strong></td>
 								</tr>
 
