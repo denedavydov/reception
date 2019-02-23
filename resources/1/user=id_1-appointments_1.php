@@ -34,7 +34,7 @@
 
 					<form action="" method="POST">
 						<label>Тема обращения:</label>
-						<div class="input-group">
+						<div class="input-group col-xs-12 col-sm-12 col-md-6">
 							  <span class="input-group-addon" id="basic-addon1"><span class="glyphicon glyphicon-comment"></span></span>
 							  <input type="text" name="theme" required="" autocomplete="off" class="form-control" placeholder="Успеваемость ребенка" aria-describedby="basic-addon1">
 						</div><br/>
@@ -94,17 +94,44 @@
 							        	$mail = $_SESSION['username'];
 							        	$theme = $_POST['theme'];
 
-							        	$query = "UPDATE `appointments` SET `status` = 'Занята', `name` = '$name', `mail` = '$mail' `theme` = '$theme' WHERE `appointments`.`id` = '$id'";
-							        	$result = mysql_query($query);
+							        	$query = "UPDATE `appointments` SET `status` = 'Занята', `name` = '$name', `mail` = '$mail', `theme` = '$theme' WHERE `appointments`.`id` = '$id'";
+							        	
+							        	if(!mysql_query($query))
+						                {echo '<p class="text-danger">ОШИБКА ЗАПИСИ НА ПРИЕМ!</p>';} 
+						                else 
+						                	{
+							                	//отправка письма
+										    
+											    $mail_to = $_SESSION['username']; // Почта получателя
 
-							        	$num_rows = mysql_num_rows($result);
-										if ($num_rows != 0) {
-											while ($line = mysql_fetch_array($result, MYSQL_ASSOC)) {
-									            foreach ($line as $col_value) {
-									                $login = $col_value;
-									                }
+												$type = 'plain'; //Можно поменять на html; plain означяет: будет присылаться чистый текст.
+												$charset = 'utf-8';
+
+												include('../../templates/smtp_func.php');
+												
+												$message = $_SESSION['name'].', Вы успешно записались на прием';
+
+												$query = "SELECT `day`, `time`, `theme` FROM appointments WHERE `id`='$id'";
+												$result = mysql_query($query);
+												$num_rows = mysql_num_rows($result);
+
+												// Сбор сообщения
+												if ($num_rows != 0) {
+													while ($line = mysql_fetch_array($result, MYSQL_ASSOC)) {
+									            		foreach ($line as $col_value) {
+											                $message = $message.' '.$col_value;
+											            }
+									            	}
 									            }
-							        	}
+												$subject = $_POST['theme'];
+												$mail_from = $_SESSION['username'];
+												$replyto = '"Электронная приемная"';
+												$headers = "To: \"Пользователь\" <$mail_to>\r\n".
+												              "From: \"$replyto\" <$mail_from>\r\n".
+												              "Reply-To: $replyto\r\n".
+												              "Content-Type: text/$type; charset=\"$charset\"\r\n";
+												$sended = smtpmail($mail_to, $subject, $message, $headers);
+											}
 							        }
 
 							        mysql_free_result($result);
