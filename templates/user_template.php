@@ -29,6 +29,7 @@
 				?>
 			</div>
 
+			<!--Вывод таблици с записями на прием-->
 			<div class="col-xs-12">
 				<a onclick="$('#appointments').slideToggle('slow');" style="cursor: pointer; text-decoration: none;">
 					<h2 class="text-primary">Записи<span class="glyphicon glyphicon-chevron-down"></span></h2>
@@ -51,17 +52,26 @@
 
 
 						        $mail = $_SESSION['username'];
-						        $query = "SELECT `day`, `time`, `theme` FROM appointments WHERE `mail`='$mail' order by `id` desc";
+						        $query = "SELECT `day`, `time`, `theme` FROM appointments WHERE `mail`='$mail' order by `id` asc";
 						        $result = mysql_query($query);
 
-						        $count=0;
+						        $count = 0;
 
 						        while ($line = mysql_fetch_array($result, MYSQL_ASSOC)) {
 						        echo "\t<tr>\n";
 						                foreach ($line as $col_value) {
-						                    echo "\t\t<td>$col_value</td>\n";
+						                	if ($count == 0) {
+						                		$date = date("d.m.Y");
+						                		if (strtotime($col_value)>=strtotime($date)){
+						                			echo "\t\t<td>$col_value</td>\n";
+						                    		$count = 1;
+						                		}
+						                	} else if ($count == 1) {$count = 2;}
+						                	if ($count == 2) {
+						                	 	echo "\t\t<td>$col_value</td>\n";
+						                	}
 						                }
-						                $count++;
+						                $count = 0;
 						            echo "\t</tr>\n";
 						        }
 
