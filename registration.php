@@ -92,7 +92,7 @@
 			            		}}
 
 			            //создание каталога пользователя
-			            mkdir('resources/'.$id,0755);
+			            mkdir('resources/'.$id, 0600);
 
 						//файлы для копирования
 						$file='templates/user_template.php';
@@ -179,7 +179,7 @@
 			            <input type="checkbox" required="" /> <a href="docs/Правила.doc" title="Скачать">Ознакомлен с правилами работы</a>
 			          </label>
 			        </div>
-					<button type="submit" class="btn btn-success" name="register"><span class="glyphicon glyphicon-log-in"></span> регистрация в системе</button>
+					<button type="submit" class="btn btn-success" name="register"><span class="glyphicon glyphicon-log-in"></span> Регистрация в системе</button>
 				</form>
 
 				<?php include('templates/footer.php'); ?>
