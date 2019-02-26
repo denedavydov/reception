@@ -44,8 +44,8 @@
 		        </ul>
 			</div>
 
-			<!-- Меню мобильной версии-->
-			<div class="hidden-sm hidden-md hidden-lg">
+			<!-- Меню мобильной-->
+			<div class="hidden-sm hidden-md hidden-lg col-xs-12">
 			  <br/>
 			  <nav role="navigation" class="navbar navbar-default">
 			    <!-- Логотип и мобильное меню -->
