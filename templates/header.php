@@ -14,6 +14,14 @@
 
 <div class="col-md-2 col-xs-12 col-sm-6">
 	<form action="" method="POST">
-		<button type="submit" class="btn btn-danger btn-block" name="exit" style="margin-top: 20px;"><span class="glyphicon glyphicon-log-out"></span> Выход</button>
+		<button type="submit" class="btn btn-danger btn-block 
+		<?php 
+			$page_name = 'admin/'.basename($_SERVER['PHP_SELF'], ".php"); 
+			$page_name = explode("-", $page_name);
+
+			if ($page_name[0] != "admin/user=admin") { // Кнопка не убирается если пользователь admin
+				echo "hidden-xs";
+			} 
+		?>" name="exit" style="margin-top: 20px;"><span class="glyphicon glyphicon-log-out"></span> Выход</button>
 	</form>
 </div>

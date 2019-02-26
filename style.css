@@ -40,6 +40,7 @@ footer{
 .navbar-default {
     background-color: #C4E2ED;
     border-color: #C4E2FF;
+    border-radius: 5px;
 }
 /* цвет текста, содержащий название сайта или бренда */
 .navbar-default .navbar-brand {
