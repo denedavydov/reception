@@ -60,15 +60,15 @@
 						        while ($line = mysql_fetch_array($result, MYSQL_ASSOC)) {
 						        echo "\t<tr>\n";
 						                foreach ($line as $col_value) {
+						                	if ($count == 1) {
+						                	 	echo "\t\t<td>$col_value</td>\n";
+						                	}
 						                	if ($count == 0) {
 						                		$date = date("d.m.Y");
 						                		if (strtotime($col_value)>=strtotime($date)){
 						                			echo "\t\t<td>$col_value</td>\n";
 						                    		$count = 1;
 						                		}
-						                	} else if ($count == 1) {$count = 2;}
-						                	if ($count == 2) {
-						                	 	echo "\t\t<td>$col_value</td>\n";
 						                	}
 						                }
 						                $count = 0;
