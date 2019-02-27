@@ -59,29 +59,32 @@
 							        $result = mysql_query($query);
 
 							        $count_write_button=0;
+							        $count_date = 0;
 							        $count = 0;
 
 							        while ($line = mysql_fetch_array($result, MYSQL_ASSOC)) {
 							        	echo "\t<tr>\n";
 						                foreach ($line as $col_value) {
 						                	if ($count == 0) {
-						                		$date = date("d.m.Y");
-						                		if (strtotime($col_value) > strtotime($date)){
-						                			echo "\t\t<td>$col_value</td>\n";
-						                    		$count = 1;
-						                		}
-						                	} else if ($count == 1) {$count = 2;}
-						                	if ($count == 2) {
-							                	if ($count_write_button != 3) {
-							                		echo "\t\t<td>$col_value</td>\n";
+						                		if ($count_date != 0) {
+								                	if ($count_write_button != 3) {
+									                		echo "\t\t<td>$col_value</td>\n";
+									                	} else {
+									                		$id = $col_value;
+									                		 echo '<td><form method="POST"><button type="submit" value="'.$id.'" class="btn btn-danger" name="status_appointments"><span class="glyphicon glyphicon-remove"></span> Отменить запись </button></form></td>';
+									                	}
+									                $count_write_button++;
 							                	} else {
-							                		$id = $col_value;
-							                		 echo '<td><form method="POST"><button type="submit" value="'.$id.'" class="btn btn-danger" name="status_appointments"><span class="glyphicon glyphicon-remove"></span> Отменить запись </button></form></td>';
+							                		$date = date("d.m.Y");
+							                		if (strtotime($col_value) > strtotime($date)){
+							                			echo "\t\t<td>$col_value</td>\n";
+							                    		$count_date = 1;
+							                		} else $count++;
 							                	}
-							                $count_write_button++;
 						                	}
 						                }
 						                $count = 0;
+						                $count_date = 0;
 						                $count_write_button = 0;
 							            echo "\t</tr>\n";
 							        }
