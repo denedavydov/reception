@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Хост: localhost:3306
--- Время создания: Фев 19 2019 г., 20:56
+-- Время создания: Фев 27 2019 г., 21:39
 -- Версия сервера: 5.7.24-0ubuntu0.18.04.1
 -- Версия PHP: 5.6.39-1+ubuntu18.04.1+deb.sury.org+1
 
@@ -59,8 +59,8 @@ INSERT INTO `appeals` (`id`, `user_id`, `mail`, `theme`, `message`, `status`, `d
 
 CREATE TABLE `appointments` (
   `id` int(11) NOT NULL,
-  `day` varchar(8) NOT NULL,
-  `time` int(2) NOT NULL,
+  `day` varchar(10) NOT NULL,
+  `time` varchar(5) NOT NULL,
   `status` varchar(9) NOT NULL,
   `name` varchar(150) NOT NULL,
   `mail` varchar(100) NOT NULL,
@@ -72,8 +72,22 @@ CREATE TABLE `appointments` (
 --
 
 INSERT INTO `appointments` (`id`, `day`, `time`, `status`, `name`, `mail`, `theme`) VALUES
-(1, '12', 12, 'Свободно', '', '', ''),
-(2, '21', 35, 'Занята', 'Денис', 'denedavydov@gmail.com', '');
+(1, '23.03.2019', '12:30', 'Свободно', '', '', ''),
+(2, '21.11.2019', '12:30', 'Занята', 'Денис', 'denedavydov@gmail.com', 'sdlfmkldsjfl'),
+(3, '29.02.2019', '16:30', 'Занята', 'Денис', 'denedavydov@gmail.com', 'дфтвмыа фарра вл');
+
+-- --------------------------------------------------------
+
+--
+-- Структура таблицы `timetable`
+--
+
+CREATE TABLE `timetable` (
+  `id` int(11) NOT NULL,
+  `day` int(1) NOT NULL,
+  `time_from` int(2) NOT NULL,
+  `time_to` int(2) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
 
@@ -99,7 +113,7 @@ INSERT INTO `users` (`id`, `name`, `surname`, `login`, `passport`, `status`, `pa
 (1, 'Давыдов', 'Денис', 'denedavydov@gmail.com', '1234545454', 'Родитель обучающегося', '12345678'),
 (2, 'Иванов', 'Петр', 'denedavydov@yandex.ru', '7878787878', 'Родитель обучающегося', 'qwerty'),
 (3, 'Петров', 'Сергей Иванович', 'davydov@school416spb.ru', '4545454545', 'Законный представитель обучающегося', '123456'),
-(4, 'admin', '', 'admin@gmail.com', '', '', 'admin1');
+(4, 'admin', 'admin', 'admin@gmail.com', '', '', 'admin1');
 
 --
 -- Индексы сохранённых таблиц
@@ -115,6 +129,12 @@ ALTER TABLE `appeals`
 -- Индексы таблицы `appointments`
 --
 ALTER TABLE `appointments`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Индексы таблицы `timetable`
+--
+ALTER TABLE `timetable`
   ADD PRIMARY KEY (`id`);
 
 --
@@ -136,7 +156,12 @@ ALTER TABLE `appeals`
 -- AUTO_INCREMENT для таблицы `appointments`
 --
 ALTER TABLE `appointments`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+--
+-- AUTO_INCREMENT для таблицы `timetable`
+--
+ALTER TABLE `timetable`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 --
 -- AUTO_INCREMENT для таблицы `users`
 --
