@@ -50,12 +50,12 @@
 								<?php
 							        include('../../templates/config.php');
 
-							       $link = mysql_connect($db_path, $db_login, $db_password);
+							        $link = mysql_connect($db_path, $db_login, $db_password);
 									mysql_select_db($db_name) or die("Не найдена БД");
 									mysql_query('SET NAMES utf8');
 
 
-							        $query = 'SELECT `day`, `time`, `name`, `theme`, `id` FROM appointments WHERE `status`="Занята" order by `id` desc';
+							        $query = 'SELECT `day`, `time`, `name`, `theme`, `id` FROM appointments WHERE `status`="Занята" order by `id` asc';
 							        $result = mysql_query($query);
 
 							        $count_write_button=0;
