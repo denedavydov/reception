@@ -87,43 +87,42 @@
 
 			<form action="" method="POST" class="col-xs-12 col-sm-8 col-sm-offset-2 col-md-6 col-md-offset-3">
 
-				<label>Логин пользователя:</label>
-				<div class="input-group">
-						<span class="input-group-addon" id="basic-addon1"></span>
-						<input type="text" name="name" autocomplete="off" class="form-control" placeholder="<?php echo $_SESSION['name']; ?>" aria-describedby="basic-addon1">
-				</div><br/>
+				<label>Фамилия:</label>
+					<div class="input-group">
+						  <span class="input-group-addon" id="basic-addon1"><span class="glyphicon glyphicon-user"></span></span>
+						  <input type="text" name="name" required="" autocomplete="off" class="form-control" placeholder="Ваша фамилия" aria-describedby="basic-addon1">
+					</div><br/>
+					<label>Имя Отчество:</label>
+					<div class="input-group">
+						  <span class="input-group-addon" id="basic-addon1"><span class="glyphicon glyphicon-user"></span></span>
+						  <input type="text" name="surname" value="<?php echo $_SESSION['name']; ?>" required="" autocomplete="off" class="form-control" placeholder="Ваше имя и отчество" aria-describedby="basic-addon1">
+					</div><br/>
+					<label>Адрес электронной почты:</label>
+					<div class="input-group">
+						  <span class="input-group-addon" id="basic-addon1"><span class="glyphicon glyphicon-envelope"></span></span>
+						  <input type="email" name="login" required="" autocomplete="off" class="form-control" placeholder="используется как логин для входа" aria-describedby="basic-addon1">
+					</div><br/>
+					<label>Серия и номер паспорта:</label>
+					<div class="input-group">
+						  <span class="input-group-addon" id="basic-addon1"><span class="glyphicon glyphicon-book"></span></span>
+						  <input type="text" name="passport" autocomplete="off" minlength="9" maxlength="10" required="" class="form-control" placeholder="серия и номер Вашего паспорта (10 цифр подряд без пробелов)" aria-describedby="basic-addon1">
+					</div><br/>
+					<label>Роль:</label>
+					<div class="input-group">
+						  <span class="input-group-addon" id="basic-addon1"><span class="glyphicon glyphicon-cog"></span></span>
+						  <select class="form-control" name="status" required="">
+						  	<option></option>
+						  	<option>Родитель обучающегося</option>
+						  	<option>Законный представитель обучающегося</option>
+						  </select>
+					</div><br/>
+					<label>Пароль пользователя:</label>
+					<div class="input-group">
+						  <span class="input-group-addon" id="basic-addon1"><span class="glyphicon glyphicon-lock"></span></span>
+						  <input type="password" name="password" required="" minlength="6" maxlength="8" autocomplete="off" class="form-control" placeholder="от 6 до 8 символов" aria-describedby="basic-addon1">
+					</div><br/>
 
-				<div class="input-group">
-						<span class="input-group-addon" id="basic-addon1"></span>
-						<input type="text" name="name" autocomplete="off" class="form-control" placeholder="<?php  ?>" aria-describedby="basic-addon1">
-				</div><br/>
-
-				<div class="input-group">
-						<span class="input-group-addon" id="basic-addon1"></span>
-						<input type="password" name="password" maxlength="8" minlength="6" autocomplete="off" class="form-control" placeholder="Пароль пользователя" aria-describedby="basic-addon1">
-				</div><br/>
-
-				<div class="input-group">
-						<span class="input-group-addon" id="basic-addon1"></span>
-						<input type="password" name="password" maxlength="8" minlength="6" autocomplete="off" class="form-control" placeholder="Электронная почта" aria-describedby="basic-addon1">
-				</div><br/>
-
-				<div class="input-group">
-						<span class="input-group-addon" id="basic-addon1"></span>
-						<input type="password" name="password" maxlength="8" minlength="6" autocomplete="off" class="form-control" placeholder="Паспорт" aria-describedby="basic-addon1">
-				</div><br/>
-
-				<div class="input-group">
-						<span class="input-group-addon" id="basic-addon1"></span>
-						<input type="password" name="password" maxlength="8" minlength="6" autocomplete="off" class="form-control" placeholder="ФИО ребёнка" aria-describedby="basic-addon1">
-				</div><br/>
-
-				<div class="input-group">
-						<span class="input-group-addon" id="basic-addon1"></span>
-						<input type="password" name="password" maxlength="8" minlength="6" autocomplete="off" class="form-control" placeholder="Класс ребёнка" aria-describedby="basic-addon1">
-				</div><br/>
-
-					<button type="submit" class="btn btn-primary" name="enter"><span class="glyphicon glyphicon-edit"></span> Сохранить изменения </button>
+					<button type="submit" class="btn btn-success" name="enter"><span class="glyphicon glyphicon-edit"></span> Сохранить изменения </button>
 			</form>
 
 			<!--подвал-->
