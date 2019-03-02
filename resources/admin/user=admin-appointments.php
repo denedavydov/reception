@@ -44,7 +44,7 @@
 									<td><strong>Время</strong></td>
 									<td><strong>Имя</strong></td>
 									<td><strong>Тема</strong></td>
-									<td><strong>отменить запись</strong></td>
+									<td><strong>Отменить запись</strong></td>
 								</tr>
 
 								<?php
@@ -130,6 +130,116 @@
 
 							</table>
 						</div>
+			</div>
+
+			<div class="col-xs-12">
+				<hr/>
+				<form action="" method="POST">
+					<h2 class="text-primary">Отмена записи на определенную дату</h2>
+					<label>Дата:</label>
+					<div class="input-group col-xs-12 col-sm-8 col-md-6">
+						  <span class="input-group-addon" id="basic-addon1"><span class="glyphicon glyphicon-calendar"></span></span>
+						  <input type="text" name="day" autocomplete="off" minlength="10" maxlength="10" required="" class="form-control" placeholder="Например: 20.12.2001" aria-describedby="basic-addon1">
+					</div><br/>
+						<button type="submit" class="btn btn-danger" name="canceled"><span class="glyphicon glyphicon-remove"></span> Отменить записи на эту дату </button><hr/>
+
+					<?php
+					// Отмене записи на указаный день
+
+						if (isset($_POST['canceled'])) {
+							
+							include('../../templates/config.php');
+
+					        $link = mysql_connect($db_path, $db_login, $db_password);
+							mysql_select_db($db_name) or die("Не найдена БД");
+							mysql_query('SET NAMES utf8');
+
+							$day = htmlspecialchars($_POST['day']);
+
+							$sql = 'INSERT INTO canceled (day) VALUES ("'.$day.'")';
+							if(!mysql_query($sql)) {
+								echo '<p class="text-danger">ОШИБКА!</p>';
+							} else echo '<div class="col-xs-12"><p class="text-success">Запись успешно отменена!</p></div>'; // Исправить вывод
+
+							mysql_free_result($result);
+							mysql_close($link);
+						}
+					?>
+				</form>
+			</div>
+
+			<!--Вывод таблицы "Отмененные записи"-->
+			<div class="col-xs-12">
+				<a onclick="$('#canseled_table').slideToggle('slow');" style="cursor: pointer; text-decoration: none;">
+				<h2 class="text-primary"> Отмененные записи <span class="glyphicon glyphicon-chevron-down"></span></h2>
+				</a>
+
+				<div  id="canseled_table" style="display: none;">
+					<div class="table-responsive">
+						<table class="table table-hover table-bordered text-center">
+							<tr class="info">
+								<td><strong>Дата</strong></td>
+								<td><strong>Статус</strong></td>
+							</tr>
+
+							<?php
+
+						        include('../../templates/config.php');
+
+						       $link = mysql_connect($db_path, $db_login, $db_password);
+								mysql_select_db($db_name) or die("Не найдена БД");
+								mysql_query('SET NAMES utf8');
+
+
+						        $query = 'SELECT `day`, `id` FROM canceled';
+						        $result = mysql_query($query);
+
+						        $count_write_button=0;
+						        $count_date = 0;
+						        $count = 0;
+
+						        while ($line = mysql_fetch_array($result, MYSQL_ASSOC)) {
+						        	echo "\t<tr>\n";
+					                foreach ($line as $col_value) {
+					                	if ($count == 0) {
+					                		if ($count_date != 0) {
+							                	if ($count_write_button != 0) {
+								                		echo "\t\t<td>$col_value</td>\n";
+								                	} else {
+								                		$id = $col_value;
+								                		 echo '<td><form method="POST"><button type="submit" value="'.$id.'" class="btn btn-success" name="new_status"><span class="glyphicon glyphicon-ok"></span> Возобновить запись </button></form></td>';
+								                	}
+								                $count_write_button++;
+						                	} else {
+						                		$date = date("d.m.Y");
+						                		if (strtotime($col_value) >= strtotime($date)){
+						                			echo "\t\t<td>$col_value</td>\n";
+						                    		$count_date = 1;
+						                		} else $count++;
+						                	}
+					                	}
+					                }
+
+					                $count = 0;
+					                $count_date = 0;
+					                $count_write_button = 0;
+						            echo "\t</tr>\n";
+							        }
+
+							        if (isset($_POST['new_status'])) {
+
+							        	$id = $_POST['new_status'];
+							        	$query = "DELETE FROM `canceled` WHERE `canceled`.`id` = '$id'";
+							        	$result = mysql_query($query);
+							        }
+
+							        mysql_free_result($result);
+							        mysql_close($link);
+								?>
+
+						</table>
+					</div>
+				</div>
 			</div>
 
 			<!--подвал-->

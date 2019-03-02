@@ -6,39 +6,48 @@
 	mysql_query('SET NAMES utf8');
 
 	$date = date("d.m.Y");
-	$day = date("w", $date);
+	$day = date("d.m.Y", strtotime($date . " +7 days"));
+
+	$query = "SELECT `day` FROM canseled WHERE `day`='$day'  order by `id` asc";
+	$result = mysql_query($query);
 	
-    $query = "SELECT `time_from`, `time_to` FROM timetable WHERE `day`='$day'  order by `id` asc";
-    $result = mysql_query($query);
+	if (mysql_num_rows($result) == 0) { // Проверка отмены записи на этот день
 
-    if (mysql_num_rows($result) != 0) {
+		$day = date("w", $date);
+		
+	    $query = "SELECT `time_from`, `time_to` FROM timetable WHERE `day`='$day'  order by `id` asc";
+	    $result = mysql_query($query);
 
-	    $count=0;
-	    $count_time = 0;
+	    if (mysql_num_rows($result) != 0) { 
 
-		while ($line = mysql_fetch_array($result, MYSQL_ASSOC)) {
-	        foreach ($line as $col_value) {
-	            if ($count_time == 0) {
-	            	$time_from = $col_value;
-	            } else $time_to = $col_value;
-	            $count_time = 1;
-	        }
-	        $count++;
-		}
+		    $count=0;
+		    $count_time = 0;
 
-		$status = 'Свободно';
-		$date = date("d.m.Y");
-		$day = date("d.m.Y", strtotime($date . " +7 days"));
-		$empty = '';
+			while ($line = mysql_fetch_array($result, MYSQL_ASSOC)) {
+		        foreach ($line as $col_value) {
+		            if ($count_time == 0) {
+		            	$time_from = $col_value;
+		            } else $time_to = $col_value;
+		            $count_time = 1;
+		        }
+		        $count++;
+			}
 
-		while ($time_from <= $time_to) {
-			$sql = 'INSERT INTO appointments (day, time, status, name, mail, theme) VALUES ("'.$day.'", "'.$time_from.'", "'.$status.'", "'.$empty.'", "'.$empty.'", "'.$empty.'")';
-			if(!mysql_query($sql))
-	                {echo '<p class="text-danger">ОШИБКА!</p>';}
-			$time_from = $time_from + 0.3;
-			if ($time_from - floor($time_from) >= 0.6) {
-				$time_from++;
-				$time_from = $time_from - 0.6;
+			$status = 'Свободно';
+			//$date = date("d.m.Y");
+			$day = date("d.m.Y", strtotime($date . " +7 days"));
+			$empty = '';
+
+			while ($time_from <= $time_to) {
+				$sql = 'INSERT INTO appointments (day, time, status, name, mail, theme) VALUES ("'.$day.'", "'.$time_from.'", "'.$status.'", "'.$empty.'", "'.$empty.'", "'.$empty.'")';
+				if(!mysql_query($sql)){ 
+					echo '<p class="text-danger">ОШИБКА!</p>';
+				}
+				$time_from = $time_from + 0.3;
+				if ($time_from - floor($time_from) >= 0.6) {
+					$time_from++;
+					$time_from = $time_from - 0.6;
+				}
 			}
 		}
 	}
