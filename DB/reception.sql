@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Хост: localhost:3306
--- Время создания: Фев 27 2019 г., 21:39
+-- Время создания: Мар 02 2019 г., 21:57
 -- Версия сервера: 5.7.24-0ubuntu0.18.04.1
 -- Версия PHP: 5.6.39-1+ubuntu18.04.1+deb.sury.org+1
 
@@ -74,7 +74,25 @@ CREATE TABLE `appointments` (
 INSERT INTO `appointments` (`id`, `day`, `time`, `status`, `name`, `mail`, `theme`) VALUES
 (1, '23.03.2019', '12:30', 'Свободно', '', '', ''),
 (2, '21.11.2019', '12:30', 'Занята', 'Денис', 'denedavydov@gmail.com', 'sdlfmkldsjfl'),
-(3, '29.02.2019', '16:30', 'Занята', 'Денис', 'denedavydov@gmail.com', 'дфтвмыа фарра вл');
+(3, '01.03.2019', '16:30', 'Занята', 'Денис', 'denedavydov@gmail.com', 'дфтвмыа фарра вл');
+
+-- --------------------------------------------------------
+
+--
+-- Структура таблицы `canceled`
+--
+
+CREATE TABLE `canceled` (
+  `id` int(11) NOT NULL,
+  `day` varchar(10) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Дамп данных таблицы `canceled`
+--
+
+INSERT INTO `canceled` (`id`, `day`) VALUES
+(3, '12.12.2019');
 
 -- --------------------------------------------------------
 
@@ -85,9 +103,16 @@ INSERT INTO `appointments` (`id`, `day`, `time`, `status`, `name`, `mail`, `them
 CREATE TABLE `timetable` (
   `id` int(11) NOT NULL,
   `day` int(1) NOT NULL,
-  `time_from` int(2) NOT NULL,
-  `time_to` int(2) NOT NULL
+  `time_from` varchar(5) NOT NULL,
+  `time_to` varchar(5) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Дамп данных таблицы `timetable`
+--
+
+INSERT INTO `timetable` (`id`, `day`, `time_from`, `time_to`) VALUES
+(1, 4, '13.30', '17.00');
 
 -- --------------------------------------------------------
 
@@ -132,6 +157,12 @@ ALTER TABLE `appointments`
   ADD PRIMARY KEY (`id`);
 
 --
+-- Индексы таблицы `canceled`
+--
+ALTER TABLE `canceled`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Индексы таблицы `timetable`
 --
 ALTER TABLE `timetable`
@@ -158,10 +189,15 @@ ALTER TABLE `appeals`
 ALTER TABLE `appointments`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 --
+-- AUTO_INCREMENT для таблицы `canceled`
+--
+ALTER TABLE `canceled`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
+--
 -- AUTO_INCREMENT для таблицы `timetable`
 --
 ALTER TABLE `timetable`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 --
 -- AUTO_INCREMENT для таблицы `users`
 --
