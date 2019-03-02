@@ -55,25 +55,29 @@
 						        $query = "SELECT `day`, `time`, `theme` FROM appointments WHERE `mail`='$mail' order by `id` asc";
 						        $result = mysql_query($query);
 
+						        $count_date = 0;
 						        $count = 0;
 
 						        while ($line = mysql_fetch_array($result, MYSQL_ASSOC)) {
-						        echo "\t<tr>\n";
-						                foreach ($line as $col_value) {
-						                	if ($count == 1) {
-						                	 	echo "\t\t<td>$col_value</td>\n";
-						                	}
-						                	if ($count == 0) {
+						        	echo "\t<tr>\n";
+					                foreach ($line as $col_value) {
+					                	if ($count == 0) {
+					                		if ($count_date != 0) {
+							                	echo "\t\t<td>$col_value</td>\n";
+						                	} else {
 						                		$date = date("d.m.Y");
-						                		if (strtotime($col_value)>=strtotime($date)){
+						                		if (strtotime($col_value) >= strtotime($date)){
 						                			echo "\t\t<td>$col_value</td>\n";
-						                    		$count = 1;
-						                		}
+						                    		$count_date = 1;
+						                		} else $count++;
 						                	}
-						                }
-						                $count = 0;
+					                	}
+					                }
+
+					                $count = 0;
+					                $count_date = 0;
 						            echo "\t</tr>\n";
-						        }
+							        }
 
 						        mysql_free_result($result);
 						        mysql_close($link);
