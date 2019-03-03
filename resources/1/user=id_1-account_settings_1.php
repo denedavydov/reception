@@ -5,6 +5,32 @@
 	include('../../templates/session_close.php');
 ?>
 
+<?php /**
+	include('../../templates/config.php');
+
+   	$link = mysql_connect($db_path, $db_login, $db_password);
+	mysql_select_db($db_name) or die("Не найдена БД");
+	mysql_query('SET NAMES utf8');
+
+	if (isset($_POST['answer'])) {
+    	$login = $_SESSION['username'];
+    	$query = "UPDATE `users` SET `name` = '$_POST[`surname`]', `surname` = '$_POST[`name`]', `passport` = '$_POST[`passport`]' WHERE `login` = '$login'";
+    	$result = mysql_query($query);
+
+    	$num_rows = mysql_num_rows($result);
+		if ($num_rows != 0) {
+			while ($line = mysql_fetch_array($result, MYSQL_ASSOC)) {
+	            foreach ($line as $col_value) {
+	                $login = $col_value;
+	                }
+	            }
+    	}
+    }
+
+    mysql_free_result($result);
+    mysql_close($link);**/
+?>
+
 <!DOCTYPE html>
 <html lang="ru">
 <head>
@@ -85,12 +111,13 @@
 				<h2 class="text-primary">Настройка профиля</h2>
 			</div>
 
+
 			<form action="" method="POST" class="col-xs-12 col-sm-8 col-sm-offset-2 col-md-6 col-md-offset-3">
 
 				<label>Фамилия:</label>
 					<div class="input-group">
 						  <span class="input-group-addon" id="basic-addon1"><span class="glyphicon glyphicon-user"></span></span>
-						  <input type="text" name="name" required="" autocomplete="off" class="form-control" placeholder="Ваша фамилия" aria-describedby="basic-addon1">
+						  <input type="text" name="name" value="<?php echo $_SESSION['surname']; ?>" required="" autocomplete="off" class="form-control" placeholder="Ваша фамилия" aria-describedby="basic-addon1">
 					</div><br/>
 					<label>Имя Отчество:</label>
 					<div class="input-group">
@@ -100,12 +127,12 @@
 					<label>Адрес электронной почты:</label>
 					<div class="input-group">
 						  <span class="input-group-addon" id="basic-addon1"><span class="glyphicon glyphicon-envelope"></span></span>
-						  <input type="email" name="login" required="" autocomplete="off" class="form-control" placeholder="используется как логин для входа" aria-describedby="basic-addon1">
+						  <input value="<?php echo $_SESSION['username']; ?>" class="form-control" aria-describedby="basic-addon1" readonly>
 					</div><br/>
 					<label>Серия и номер паспорта:</label>
 					<div class="input-group">
 						  <span class="input-group-addon" id="basic-addon1"><span class="glyphicon glyphicon-book"></span></span>
-						  <input type="text" name="passport" autocomplete="off" minlength="9" maxlength="10" required="" class="form-control" placeholder="серия и номер Вашего паспорта (10 цифр подряд без пробелов)" aria-describedby="basic-addon1">
+						  <input type="text" name="passport" value="<?php echo $_SESSION['passport']; ?>" autocomplete="off" minlength="9" maxlength="10" required="" class="form-control" placeholder="серия и номер Вашего паспорта (10 цифр подряд без пробелов)" aria-describedby="basic-addon1">
 					</div><br/>
 					<label>Роль:</label>
 					<div class="input-group">

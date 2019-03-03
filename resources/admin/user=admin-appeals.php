@@ -40,7 +40,7 @@
 								
 								include('../../templates/config.php');
 
-						       $link = mysql_connect($db_path, $db_login, $db_password);
+						       	$link = mysql_connect($db_path, $db_login, $db_password);
 								mysql_select_db($db_name) or die("Не найдена БД");
 								mysql_query('SET NAMES utf8');
 
