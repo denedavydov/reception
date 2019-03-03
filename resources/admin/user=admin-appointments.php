@@ -242,6 +242,96 @@
 				</div>
 			</div>
 
+			<div class="col-xs-12 col-md-6">
+
+				<?php
+					if (isset($_POST['clear'])) { //очистка таблицы с расписанием
+
+						include('../../templates/config.php');
+
+				       $link = mysql_connect($db_path, $db_login, $db_password);
+						mysql_select_db($db_name) or die("Не найдена БД");
+						mysql_query('SET NAMES utf8');
+
+
+				        $query = 'TRUNCATE TABLE timetable';
+				        $result = mysql_query($query);
+					}
+
+					if (isset($_POST['add_timetable'])) { // Добавление новых дней в таблицу с расписанием
+
+						$day = htmlspecialchars($_POST['day']);
+
+						switch ($day) {
+							case 'Понедельник':
+								$day = 0;
+								break;
+							case 'Вторник':
+								$day = 1;
+								break;
+							case 'Среда':
+								$day = 2;
+								break;
+							case 'Четверг':
+								$day = 3;
+								break;
+							case 'Пятница':
+								$day = 4;
+								break;
+							case 'Суббота':
+								$day = 5;
+								break;
+						}
+
+	                	$time_from = htmlspecialchars($_POST['time_from']);
+	                	$time_to = htmlspecialchars($_POST['time_to']);
+
+	                	include('../../templates/config.php');
+
+				       $link = mysql_connect($db_path, $db_login, $db_password);
+						mysql_select_db($db_name) or die("Не найдена БД");
+						mysql_query('SET NAMES utf8');
+
+
+				        $query = 'INSERT INTO timetable (day, time_from, time_to) VALUES ("'.$day.'", "'.$time_from.'", "'.$time_to.'")';
+				        $result = mysql_query($query);
+	                }
+				?>
+
+				<hr/>
+				<h2 class="text-primary"> Изменить график приема </h2><br/>
+				<h4 class="text-primary">Добавить новый приемный день</h4><br/>
+				<form action="" method="POST">
+					<label>День недели:</label>
+					<div class="input-group">
+						<span class="input-group-addon" id="basic-addon1"><span class="glyphicon glyphicon-calendar"></span></span>
+						<select class="form-control" name="day" required="">
+						  	<option></option>
+						  	<option>Понедельник</option>
+						  	<option>Вторник</option>
+						  	<option>Среда</option>
+						  	<option>Четверг</option>
+						  	<option>Пятница</option>
+						  	<option>Суббота</option>
+						</select>
+					</div><br/>
+					<label>Время начала:</label>
+					<div class="input-group col-xs-6 col-md-5">
+						  <span class="input-group-addon" id="basic-addon1"><span class="glyphicon glyphicon-time"></span></span>
+						  <input type="text" name="time_from" autocomplete="off" minlength="5" maxlength="5" required="" class="form-control" placeholder="13.30" aria-describedby="basic-addon1">
+					</div><br/>
+					<label>Время окончания:</label>
+					<div class="input-group col-xs-6 col-md-5">
+						  <span class="input-group-addon" id="basic-addon1"><span class="glyphicon glyphicon-time"></span></span>
+						  <input type="text" name="time_to" autocomplete="off" minlength="5" maxlength="5" required="" class="form-control" placeholder="17.00" aria-describedby="basic-addon1">
+					</div><br/>
+					<button type="submit" class="btn btn-success" name="add_timetable"><span class="glyphicon glyphicon-ok"></span> Добавить приемный день</button><br/><br/>
+				</form>
+				<form action="" method="POST">
+					<button type="submit" class="btn btn-danger" name="clear"><span class="glyphicon glyphicon-remove"></span> Удалить все приемные дни</button>
+				</form>
+
+			</div>
 			<!--подвал-->
 			<div class="col-xs-12 text-center">
 				<?php include('../../templates/footer.php'); ?>

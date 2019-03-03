@@ -1,4 +1,6 @@
 <?php
+	// Выполнять каждый день после 17:00
+
 	include('templates/config.php');
 
     $link = mysql_connect($db_path, $db_login, $db_password);
@@ -33,13 +35,19 @@
 		        $count++;
 			}
 
+			$time_from = str_replace(".", ":", $time_from);
+			$time_to =str_replace(".", ":", $time_to);
+
 			$status = 'Свободно';
 			//$date = date("d.m.Y");
 			$day = date("d.m.Y", strtotime($date . " +7 days"));
 			$empty = '';
 
-			while ($time_from <= $time_to) {
-				$sql = 'INSERT INTO appointments (day, time, status, name, mail, theme) VALUES ("'.$day.'", "'.$time_from.'", "'.$status.'", "'.$empty.'", "'.$empty.'", "'.$empty.'")';
+			while ($time_from <= $time_to - 0.3) {
+
+				$time_from_new = str_replace(".", ":", $time_from);
+
+				$sql = 'INSERT INTO appointments (day, time, status, name, mail, theme) VALUES ("'.$day.'", "'.$time_from_new.'", "'.$status.'", "'.$empty.'", "'.$empty.'", "'.$empty.'")';
 				if(!mysql_query($sql)){ 
 					echo '<p class="text-danger">ОШИБКА!</p>';
 				}
