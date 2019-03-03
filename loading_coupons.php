@@ -1,4 +1,6 @@
 <?php
+	// Выполнять каждый день после 17:00
+
 	include('templates/config.php');
 
     $link = mysql_connect($db_path, $db_login, $db_password);
