@@ -5,7 +5,7 @@
 	include('../../templates/session_close.php');
 ?>
 
-<?php /**
+<?php 
 	include('../../templates/config.php');
 
    	$link = mysql_connect($db_path, $db_login, $db_password);
@@ -14,7 +14,7 @@
 
 	if (isset($_POST['answer'])) {
     	$login = $_SESSION['username'];
-    	$query = "UPDATE `users` SET `name` = '$_POST[`surname`]', `surname` = '$_POST[`name`]', `passport` = '$_POST[`passport`]' WHERE `login` = '$login'";
+    	$query = "UPDATE `users` SET `name` = '$_POST[`surname`]', `surname` = '$_POST[`name`]', `passport` = '$_POST[`passport`]' WHERE `users`.`login` = '$login'";
     	$result = mysql_query($query);
 
     	$num_rows = mysql_num_rows($result);
@@ -28,7 +28,7 @@
     }
 
     mysql_free_result($result);
-    mysql_close($link);**/
+    mysql_close($link);
 ?>
 
 <!DOCTYPE html>
