@@ -8,23 +8,18 @@
 <?php 
 	include('../../templates/config.php');
 
-   	$link = mysql_connect($db_path, $db_login, $db_password);
+    $link = mysql_connect($db_path, $db_login, $db_password);
 	mysql_select_db($db_name) or die("Не найдена БД");
 	mysql_query('SET NAMES utf8');
 
 	if (isset($_POST['answer'])) {
-    	$login = $_SESSION['username'];
-    	$query = "UPDATE `users` SET `name` = '$_POST[`surname`]', `surname` = '$_POST[`name`]', `passport` = '$_POST[`passport`]' WHERE `users`.`login` = '$login'";
-    	$result = mysql_query($query);
+    	$login = htmlspecialchars($_SESSION['username']);
+    	$passport = htmlspecialchars($_POST['passport']);
+    	$name = htmlspecialchars($_POST['name']);
+    	$surname = htmlspecialchars($_POST['surname']);
 
-    	$num_rows = mysql_num_rows($result);
-		if ($num_rows != 0) {
-			while ($line = mysql_fetch_array($result, MYSQL_ASSOC)) {
-	            foreach ($line as $col_value) {
-	                $login = $col_value;
-	                }
-	            }
-    	}
+    	$query = "UPDATE `users` SET `name` = '$surname', `surname` = '$name', `passport` = '$passport' WHERE `users`.`login` = '$login'";
+    	$result = mysql_query($query);
     }
 
     mysql_free_result($result);
@@ -149,7 +144,7 @@
 						  <input type="password" name="password" required="" minlength="6" maxlength="8" autocomplete="off" class="form-control" placeholder="от 6 до 8 символов" aria-describedby="basic-addon1">
 					</div><br/>
 
-					<button type="submit" class="btn btn-success" name="enter"><span class="glyphicon glyphicon-edit"></span> Сохранить изменения </button>
+					<button type="submit" class="btn btn-success" name="answer"><span class="glyphicon glyphicon-edit"></span> Сохранить изменения </button>
 			</form>
 
 			<!--подвал-->
