@@ -101,7 +101,7 @@
 						//создание страницы пользователя
 						copy($file, $newfile);
 
-						/*//файлы для копирования
+						//файлы для копирования
 						$file='templates/appeals_template.php';
 						$newfile='resources/'.$id.'/user=id_'.$id.'-appeals_'.$id.'.php';
 
@@ -120,7 +120,7 @@
 						$newfile='resources/'.$id.'/user=id_'.$id.'-account_settings_'.$id.'.php';
 
 						//создание обращений на странице пользователя
-						copy($file, $newfile);*/
+						copy($file, $newfile);
 
 	                	session_start();
 	                	$_SESSION['reg'] = TRUE;
