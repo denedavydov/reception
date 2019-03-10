@@ -20,6 +20,24 @@
 
     	$query = "UPDATE `users` SET `name` = '$surname', `surname` = '$name', `passport` = '$passport' WHERE `users`.`login` = '$login'";
     	$result = mysql_query($query);
+
+    	$query = "SELECT `password` FROM users WHERE `login` = '$login'";
+						$result = mysql_query($query);
+						$num_rows = mysql_num_rows($result);
+
+						if ($num_rows != 0) {
+							while ($line = mysql_fetch_array($result, MYSQL_ASSOC)) {
+			            		foreach ($line as $col_value) {
+					                $pass = $col_value;
+					                }
+			            		}}
+
+    	if ($_POST[old_password] != none and $_POST[old_password] == $pass){
+    		if ($_POST[new_password1] == $_POST[new_password2]) {
+    			$query = "UPDATE `users` SET `password` = '$_POST[new_password1]' WHERE `users`.`login` = '$login'";
+    			$result = mysql_query($query);
+    		}else{echo "Пароли не совподают";}
+    	}else{echo "Неправильный пароль";}
     }
 
     mysql_free_result($result);
@@ -133,15 +151,18 @@
 					<div class="input-group">
 						  <span class="input-group-addon" id="basic-addon1"><span class="glyphicon glyphicon-cog"></span></span>
 						  <select class="form-control" name="status" required="">
-						  	<option></option>
-						  	<option>Родитель обучающегося</option>
-						  	<option>Законный представитель обучающегося</option>
+						  	<option><?php echo $_SESSION['status']; ?></option>
+						  	<option><?php if($_SESSION['status'] == 'Законный представитель обучающегося') {echo "Родитель обучающегося";} else { echo "Законный представитель обучающегося";} ?></option>
 						  </select>
 					</div><br/>
-					<label>Пароль пользователя:</label>
+					<label>изменение пароля:</label>
 					<div class="input-group">
 						  <span class="input-group-addon" id="basic-addon1"><span class="glyphicon glyphicon-lock"></span></span>
-						  <input type="password" name="password" required="" minlength="6" maxlength="8" autocomplete="off" class="form-control" placeholder="от 6 до 8 символов" aria-describedby="basic-addon1">
+						  <input type="password" name="old_password" required="" minlength="6" maxlength="8" autocomplete="off" class="form-control" placeholder="Введите текущий пароль" aria-describedby="basic-addon1">
+
+						  <input type="password" name="new_password1" required="" minlength="6" maxlength="8" autocomplete="off" class="form-control" placeholder="Введите новый пароль" aria-describedby="basic-addon1">
+
+						  <input type="password" name="new_password2" required="" minlength="6" maxlength="8" autocomplete="off" class="form-control" placeholder="Повторите пароль" aria-describedby="basic-addon1">
 					</div><br/>
 
 					<button type="submit" class="btn btn-success" name="answer"><span class="glyphicon glyphicon-edit"></span> Сохранить изменения </button>

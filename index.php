@@ -96,6 +96,17 @@
 					                }
 			            		}}
 
+			            $query = "SELECT `status` FROM users WHERE `login` = '$login' and  `password` = '$password'";
+						$result = mysql_query($query);
+						$num_rows = mysql_num_rows($result);
+
+						if ($num_rows != 0) {
+							while ($line = mysql_fetch_array($result, MYSQL_ASSOC)) {
+			            		foreach ($line as $col_value) {
+					                $status = $col_value;
+					                }
+			            		}}
+
 			            session_start();
 	            		if ($_POST['login']=='admin@gmail.com') {
 							$_SESSION['name'] = 'admin';
@@ -109,6 +120,7 @@
 					        $_SESSION['id'] = $id;
 					        $_SESSION['passport'] = $passport;
 					        $_SESSION['surname'] = $surname;
+					        $_SESSION['status'] = $status;
 					        header('location:resources/'.$_SESSION['page'].'.php');
 				        	}
 				        exit();
