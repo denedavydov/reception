@@ -22,15 +22,16 @@
     	$result = mysql_query($query);
 
     	$query = "SELECT `password` FROM users WHERE `login` = '$login'";
-						$result = mysql_query($query);
-						$num_rows = mysql_num_rows($result);
+		$result = mysql_query($query);
+		$num_rows = mysql_num_rows($result);
 
-						if ($num_rows != 0) {
-							while ($line = mysql_fetch_array($result, MYSQL_ASSOC)) {
-			            		foreach ($line as $col_value) {
-					                $pass = $col_value;
-					                }
-			            		}}
+		if ($num_rows != 0) {
+			while ($line = mysql_fetch_array($result, MYSQL_ASSOC)) {
+        		foreach ($line as $col_value) {
+	                $pass = $col_value;
+	                }
+        		}
+        }
 
     	if ($_POST[old_password] != none and $_POST[old_password] == $pass){
     		if ($_POST[new_password1] == $_POST[new_password2]) {
@@ -155,7 +156,7 @@
 						  	<option><?php if($_SESSION['status'] == 'Законный представитель обучающегося') {echo "Родитель обучающегося";} else { echo "Законный представитель обучающегося";} ?></option>
 						  </select>
 					</div><br/>
-					<label>изменение пароля:</label>
+					<label>Изменение пароля:</label>
 					<div class="input-group">
 						  <span class="input-group-addon" id="basic-addon1"><span class="glyphicon glyphicon-lock"></span></span>
 						  <input type="password" name="old_password" required="" minlength="6" maxlength="8" autocomplete="off" class="form-control" placeholder="Введите текущий пароль" aria-describedby="basic-addon1">
