@@ -20,7 +20,7 @@
 	    $query = "SELECT `time_from`, `time_to` FROM timetable WHERE `day`='$day'  order by `id` asc";
 	    $result = mysql_query($query);
 
-	    if (mysql_num_rows($result) != 0) { 
+	    if (mysql_num_rows($result) != 0) {  // Если есть прием в этот день
 
 		    $count=0;
 		    $count_time = 0;
@@ -35,8 +35,8 @@
 		        $count++;
 			}
 
-			$time_from = str_replace(".", ":", $time_from);
-			$time_to =str_replace(".", ":", $time_to);
+			//$time_from = str_replace(".", ":", $time_from);
+			//$time_to =str_replace(".", ":", $time_to);
 
 			$status = 'Свободно';
 			//$date = date("d.m.Y");
